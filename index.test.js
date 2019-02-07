@@ -1,5 +1,3 @@
-import { setup } from './base'
-
 // prompt user with basic questions
 // get stack choices from list of files / folders in stacks dir
 // prompt for stack choice

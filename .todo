@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<todo version="0.1.20">
+    <note priority="veryhigh" time="1549510603">
+        Make "base" stack repo
+    </note>
+    <note priority="veryhigh" time="1549510613">
+        make base stack configuration script
+    </note>
+    <note priority="veryhigh" time="1549510644">
+        Attach base configuration script to primary script
+    </note>
+    <note priority="veryhigh" time="1549510680">
+        test, verify base repo is deployed and configured by base script
+    </note>
+    <note priority="veryhigh" time="1549510710">
+        create relay-postgraphile repo
+    </note>
+    <note priority="veryhigh" time="1549510723">
+        create relay-postgraphile configuration script
+    </note>
+    <note priority="veryhigh" time="1549510768">
+        verify relay-postgraphile repo is deployed and configured by relay-postgraphile stack configuration script
+
+    </note>
+</todo>
