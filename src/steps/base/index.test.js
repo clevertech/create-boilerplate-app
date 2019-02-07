@@ -1,28 +1,33 @@
-import * as base from './base'
+import * as base from '.'
+import * as base from '.'
 import inquirer from 'inquirer'
 
-import { clone } from '../utils/clone'
-import { moveContentsToRoot } from '../utils/move'
-import { deleteEmptyRootFolder } from '../utils/delete'
+import { clone } from '../../utils/clone'
+import { moveContentsToRoot } from '../../utils/move'
+import { deleteEmptyRootFolder } from '../../utils/delete'
 
 jest.mock('../utils/clone')
 jest.mock('inquirer')
 
 describe('Base Stack Configuration', () => {
-  it('clones down boilerplate base repo', () => {
-    base.run()
+  it('clones down boilerplate index repo', () => {
+    base()
+    expect(base.REPO).not.toBe(undefined)
     expect(clone).toHaveBeenCalledWith(base.REPO)
   })
-  it('mvs boilerplate base files boilerplate root', () => {
-    base.run()
+  it('mvs boilerplate index files boilerplate root', () => {
+    base()
+    expect(base.NAME).not.toBe(undefined)
     expect(moveContentsToRoot).toHaveBeenCalledWith(base.NAME)
   })
-  it('deletes empty boilerplate base folder', () => {
-    base.run()
+  it('deletes empty boilerplate index folder', () => {
+    base()
+    expect(base.NAME).not.toBe(undefined)
     expect(deleteEmptyRootFolder).toHaveBeenCalledWith(base.NAME)
   })
   it('prompts for project name and applies it to config files', () => {
-    base.run()
+    base()
+    expect(promptForBasicData).toHaveBeenCalledWith(base.NAME)
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining({
         name: 'projectName',
@@ -35,7 +40,7 @@ describe('Base Stack Configuration', () => {
     expect('apply to config').toBe(false)
   })
   it('prompts for gitRemote and applies it to config files', () => {
-    base.run()
+    base()
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining({
         name: 'gitRemote',
@@ -47,7 +52,7 @@ describe('Base Stack Configuration', () => {
     expect('apply to config').toBe(false)
   })
   it('prompts for semi and applies it to config files', () => {
-    base.run()
+    base()
     expect(inquir.prompt).toHaveBeenCalledWith(
       expect.arrayContaining({
         name: 'semi',
@@ -59,7 +64,7 @@ describe('Base Stack Configuration', () => {
     expect('apply to config').toBe(false)
   })
   it('prompts for employee and applies it to config files', () => {
-    base.run()
+    base()
     expect(inquir.prompt).toHaveBeenCalledWith(
       expect.arrayContaining({
         name: 'employee',
@@ -71,7 +76,7 @@ describe('Base Stack Configuration', () => {
     expect('apply to config').toBe(false)
   })
   it('prompts for deployMode and applies it to config files', () => {
-    base.run()
+    base()
     expect(inquir.prompt).toHaveBeenCalledWith(
       expect.arrayContaining({
         name: 'deployMode',
@@ -84,7 +89,7 @@ describe('Base Stack Configuration', () => {
     expect('apply to config').toBe(false)
   })
   it('prompts for admin and applies it to config files', () => {
-    base.run()
+    base()
     expect(inquir.prompt).toHaveBeenCalledWith(
       expect.arrayContaining({
         name: 'admin',

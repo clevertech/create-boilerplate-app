@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <todo version="0.1.20">
     <note priority="veryhigh" time="1549510603">
-        Make "base" stack repo
+        Make "index" stack repo
     </note>
     <note priority="veryhigh" time="1549510613">
-        make base stack configuration script
+        make index stack configuration script
     </note>
     <note priority="veryhigh" time="1549510644">
-        Attach base configuration script to primary script
+        Attach index configuration script to primary script
     </note>
     <note priority="veryhigh" time="1549510680">
-        test, verify base repo is deployed and configured by base script
+        test, verify index repo is deployed and configured by index script
     </note>
     <note priority="veryhigh" time="1549510710">
         create relay-postgraphile repo

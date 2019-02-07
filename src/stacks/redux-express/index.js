@@ -12,7 +12,7 @@
 //      // delete empty stack folder
 //      // prompt for stack questions
 //
-// receive generic answers from base CBA script
+// receive generic answers from index CBA script
 // prompt for stack specific options
 // apply project name to all stack-specific locations
 // apply prettier config

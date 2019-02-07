@@ -1,10 +1,10 @@
-import { run as baseRun } from './base'
-import { run as stackRun } from './stack'
-import { run as employeeRun } from './employee'
-import { run as adminRun } from './admin'
-import { run as cleanupRun } from './cleanup'
-import { run as suffixRun } from './suffix'
-jest.mock('./base')
+import { run as baseRun } from '../base'
+import { run as stackRun } from '../stack'
+import { run as employeeRun } from '../employee'
+import { run as adminRun } from '../admin'
+import { run as cleanupRun } from '../cleanup'
+import { run as suffixRun } from '../suffix'
+jest.mock('./index')
 jest.mock('./stack')
 jest.mock('./employee')
 jest.mock('./admin')
@@ -12,7 +12,7 @@ jest.mock('./cleanup')
 jest.mock('./suffix')
 
 describe('CBA Step: Start', () => {
-  it('runs base setup script', () => {
+  it('runs index setup script', () => {
     expect(baseRun).toHaveBeenCalled()
   })
   it('runs stack setup script', () => {

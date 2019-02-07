@@ -15,8 +15,8 @@ describe('Redux-Express Boilerplate Setup Script', () => {
     // prompt for stack questions
     expect(false).toBe(true)
   })
-  it('apply base answers to stack configuration files', () => {
-    // apply base answers to stack configuration files
+  it('apply index answers to stack configuration files', () => {
+    // apply index answers to stack configuration files
     expect(false).toBe(true)
   })
   it('apply stack answers to stack configuration files', () => {
