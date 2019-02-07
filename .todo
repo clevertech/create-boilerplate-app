@@ -1,25 +1,33 @@
 <?xml version="1.0"?>
 <todo version="0.1.20">
-    <note priority="veryhigh" time="1549510603">
+    <note priority="veryhigh" time="1549510603" done="1549535390">
         Make "index" stack repo
     </note>
-    <note priority="veryhigh" time="1549510613">
+    <note priority="veryhigh" time="1549510613" done="1549535439">
         make index stack configuration script
     </note>
-    <note priority="veryhigh" time="1549510644">
+    <note priority="veryhigh" time="1549510644" done="1549535439">
         Attach index configuration script to primary script
     </note>
-    <note priority="veryhigh" time="1549510680">
+    <note priority="veryhigh" time="1549510680" done="1549535440">
         test, verify index repo is deployed and configured by index script
     </note>
-    <note priority="veryhigh" time="1549510710">
+    <note priority="veryhigh" time="1549510710" done="1549535401">
         create relay-postgraphile repo
+        <comment>
+            tdd 6
+        </comment>
     </note>
-    <note priority="veryhigh" time="1549510723">
+    <note priority="veryhigh" time="1549510723" done="1549535440">
         create relay-postgraphile configuration script
     </note>
-    <note priority="veryhigh" time="1549510768">
+    <note priority="veryhigh" time="1549510768" done="1549535413">
         verify relay-postgraphile repo is deployed and configured by relay-postgraphile stack configuration script
-
+        <comment>
+            tdd 2
+        </comment>
+    </note>
+    <note priority="veryhigh" time="1549535475">
+        make tests pass, starting in steps/base.js
     </note>
 </todo>
