@@ -262,15 +262,11 @@ const updatePrettierConfiguration = async answers => {
 }
 
 const useProjectName = async answers => {
-  const files = [
-    'api/Makefile',
-    'frontend/Makefile',
-    'docker/run'
-  ]
+  const files = ['api/Makefile', 'frontend/Makefile', 'docker/run']
   for (const file of files) {
     const filePath = path.join(basedir, file)
     // Some files do not exist if you are not a Clevertech employee
-    if (!(await fs.exists(filePath))) continue
+    if (!await fs.exists(filePath)) continue
     const source = await fs.readFile(filePath, 'utf8')
     const sourceNew = source
       .replace(/boilerplate/g, dashify(answers.projectName))
@@ -387,23 +383,26 @@ const makeAdminQuestions = async initialAnswers => {
   ])
 }
 
-const addExtras = async (deployMode) => {
+const addExtras = async deployMode => {
   const dir = path.join(basedir, 'extras')
   await cloneRepo('boilerplate-extras', dir)
 
   const files = ['api/Makefile', 'frontend/Makefile', 'terraform']
   if (deployMode === 'k8s') {
-      files.push('buildspec-k8s-api.yml');
-      files.push('buildspec-k8s-frontend.yml');
+    files.push('buildspec-k8s-api.yml')
+    files.push('buildspec-k8s-frontend.yml')
   } else {
-      files.push('buildspec-ecs-api.yml');
-      files.push('buildspec-ecs-frontend.yml');
+    files.push('buildspec-ecs-api.yml')
+    files.push('buildspec-ecs-frontend.yml')
   }
 
   // move files
   await Promise.all(
     files.map(filename =>
-      fs.move(path.join(dir, filename), path.join(basedir, filename.replace( /\-k8s|\-ecs/, '' )))
+      fs.move(
+        path.join(dir, filename),
+        path.join(basedir, filename.replace(/\-k8s|\-ecs/, ''))
+      )
     )
   )
 
@@ -418,7 +417,7 @@ const addExtras = async (deployMode) => {
   await fs.remove(dir)
 }
 
-const createRootEnvFile = async (answers) => {
+const createRootEnvFile = async answers => {
   const content = `COMPOSE_PROJECT_NAME=${toSnakeCase(answers.projectName)}\n`
   await fs.writeFile(path.join(basedir, '.env'), content)
 }
@@ -456,7 +455,7 @@ const run = async () => {
         name: 'deployMode',
         type: 'list',
         message: 'What is the deploy mode?',
-        choices: ['k8s','ecs'],
+        choices: ['k8s', 'ecs'],
         default: 'k8s'
       },
       {
