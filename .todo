@@ -30,4 +30,10 @@
     <note priority="veryhigh" time="1549535475">
         make tests pass, starting in steps/base.js
     </note>
+    <note priority="verylow" time="1549585188">
+        add architecture to code thing
+    </note>
+    <note priority="verylow" time="1549585307">
+        add monitoring to standards
+    </note>
 </todo>

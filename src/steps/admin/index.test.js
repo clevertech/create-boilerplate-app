@@ -1,18 +1,10 @@
 describe('Configuration cleanup', () => {
-  it('deletes boilerplate git dir', () => {
+  it('shows admin info when employee is admin', () => {
     // delete git dir
     expect(false).toBe(true)
   })
-  it('inits new git project', () => {
+  it('does not show admin info when employee is not admin', () => {
     // init git dir
-    expect(false).toBe(true)
-  })
-  it('installs yarn dependencies', () => {
-    // yarn
-    expect(false).toBe(true)
-  })
-  it('makes the initial commit', () => {
-    // commit
     expect(false).toBe(true)
   })
 })

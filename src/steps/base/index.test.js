@@ -1,33 +1,37 @@
-import * as base from '.'
-import * as base from '.'
+import { REPO, NAME } from '.'
+import base from '.'
+import prompt from './prompt'
 import inquirer from 'inquirer'
 
-import { clone } from '../../utils/clone'
-import { moveContentsToRoot } from '../../utils/move'
-import { deleteEmptyRootFolder } from '../../utils/delete'
+import clone from '../../utils/clone'
+import moveContentsToRoot from '../../utils/move'
+import deleteEmptyRootFolder from '../../utils/delete'
 
-jest.mock('../utils/clone')
+jest.mock('../../utils/clone')
+jest.mock('../../utils/move')
+jest.mock('../../utils/delete')
+jest.mock('./prompt')
 jest.mock('inquirer')
 
 describe('Base Stack Configuration', () => {
   it('clones down boilerplate index repo', () => {
     base()
-    expect(base.REPO).not.toBe(undefined)
-    expect(clone).toHaveBeenCalledWith(base.REPO)
+    expect(REPO).not.toBe(undefined)
+    expect(clone).toHaveBeenCalledWith(REPO)
   })
   it('mvs boilerplate index files boilerplate root', () => {
     base()
-    expect(base.NAME).not.toBe(undefined)
-    expect(moveContentsToRoot).toHaveBeenCalledWith(base.NAME)
+    expect(NAME).not.toBe(undefined)
+    expect(moveContentsToRoot).toHaveBeenCalledWith(NAME)
   })
   it('deletes empty boilerplate index folder', () => {
     base()
-    expect(base.NAME).not.toBe(undefined)
-    expect(deleteEmptyRootFolder).toHaveBeenCalledWith(base.NAME)
+    expect(NAME).not.toBe(undefined)
+    expect(deleteEmptyRootFolder).toHaveBeenCalledWith(NAME)
   })
   it('prompts for project name and applies it to config files', () => {
     base()
-    expect(promptForBasicData).toHaveBeenCalledWith(base.NAME)
+    expect(promptForBasicData).toHaveBeenCalledWith(NAME)
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining({
         name: 'projectName',

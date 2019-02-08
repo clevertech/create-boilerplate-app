@@ -1,11 +1,28 @@
-export const REPO = 'https://github.com/chadfurman/boilerplate'
+import clone from '../../utils/clone'
+import moveContentsToRoot from '../../utils/move'
+import deleteEmptyRootFolder from '../../utils/delete'
 
-const index = function() {
+import prompt from './prompt'
+
+export const REPO = 'https://github.com/chadfurman/boilerplate'
+export const NAME = 'base'
+
+const base = async function() {
   // clone down boilerplate index repo
-  // mv boilerplate index files boilerplate root
-  // delete empty boilerplate index folder
-  // prompt for index questions
-  // apply index answers to index configuration files
+  const answers = prompt()
+  clone(REPO)
+  moveContentsToRoot(NAME)
+  deleteEmptyRootFolder(NAME)
+  // configure database
+  // create root env file
+  // update docker compose
+  // update env file
+  // update api package json
+  // update frontend package json
+  // update root package json
+  // update prettier configuration
+  // update project name
+  return answers
 }
 
 export default base
