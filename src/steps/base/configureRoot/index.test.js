@@ -1,14 +1,23 @@
+import updatePackageJson from './updatePackageJson'
+import updatePrettierConfig from './updatePrettierConfig'
+import useProjectName from './useProjectName'
+jest.mock('./updatePackageJson')
+jest.mock('./updatePrettierConfig')
+jest.mock('./useProjectName')
+
+import subject from './'
+
 describe('Configuration of Root', () => {
   it('sets project name', () => {
-    expect(false).toBe(true)
-  })
-  it('updates env file', () => {
-    expect(false).toBe(true)
+    subject()
+    expect(updatePackageJson).toHaveBeenCalled()
   })
   it('updates package.json file', () => {
-    expect(false).toBe(true)
+    subject()
+    expect(updatePrettierConfig).toHaveBeenCalled()
   })
   it('updates prettier configuration', () => {
-    expect(false).toBe(true)
+    subject()
+    expect(useProjectName).toHaveBeenCalled()
   })
 })

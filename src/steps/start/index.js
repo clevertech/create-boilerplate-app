@@ -1,9 +1,9 @@
-import * as baseRun from '../base'
-import * as stackRun from '../stack'
-import * as employeeRun from '../employee'
-import * as adminRun from '../admin'
-import * as cleanupRun from '../cleanup'
-import * as suffixRun from '../suffix'
+import baseRun from '../base'
+import stackRun from '../stack'
+import employeeRun from '../employee'
+import adminRun from '../admin'
+import cleanupRun from '../cleanup'
+import suffixRun from '../suffix'
 
 const run = function() {
   let results = {}

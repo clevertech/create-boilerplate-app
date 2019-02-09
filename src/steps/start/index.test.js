@@ -11,28 +11,31 @@ jest.mock('../admin')
 jest.mock('../cleanup')
 jest.mock('../suffix')
 
+import subject from './'
+
 describe('CBA Step: Start', () => {
-  it('runs index setup script', () => {
+  it('runs base setup script', () => {
+    subject()
     expect(base).toHaveBeenCalled()
   })
   it('runs stack setup script', () => {
-    // run stack setup script
+    subject()
     expect(stack).toHaveBeenCalled()
   })
   it('runs employee configuration if employee', () => {
-    // run employee configuration if employee
+    subject()
     expect(employee).toHaveBeenCalled()
   })
   it('runs admin configuration if employee and admin', () => {
-    // run admin configuration if employee and admin
+    subject()
     expect(admin).toHaveBeenCalled()
   })
   it('runs cleanup', () => {
-    // run cleanup
+    subject()
     expect(cleanup).toHaveBeenCalled()
   })
   it('prints a suffix message', () => {
-    // suffix message
+    subject()
     expect(suffix).toHaveBeenCalled()
   })
 })

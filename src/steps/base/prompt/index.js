@@ -1,24 +1,25 @@
+import path from 'path'
 import inquirer from 'inquirer'
+
 const prompt = async function() {
-  const answers = await inquirer.prompt([
+  return inquirer.prompt([
     {
       name: 'projectName',
       type: 'string',
       message:
         "What's the official name of the project? (e.g. The New York Times)",
-      default: path.basename(dirName)
+      default: path.basename(process.argv[2])
     },
     {
       name: 'gitRemote',
       type: 'string',
-      message: "What's the Git remote URI?",
-      default: answers => repoURL(protocol, dashify(answers.projectName))
+      message: "What's the Git remote URI?"
     },
     {
       name: 'semi',
       type: 'confirm',
       message: 'Do like semicolons in code?',
-      default: true
+      default: false
     },
     {
       name: 'employee',
@@ -41,8 +42,6 @@ const prompt = async function() {
       when: answers => answers.employee
     }
   ])
-
-  return answers
 }
 
 export default prompt

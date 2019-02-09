@@ -1,59 +1,206 @@
+import inquirer from 'inquirer'
+jest.mock('inquirer')
+
+import subject from './'
+
 describe("Base-Stack Step's Prompt", () => {
-  it('asks for project name', () => {
-    // {
-    //   name: 'projectName',
-    //     type: 'string',
-    //   message:
-    //   "What's the official name of the project? (e.g. The New York Times)",
-    // default: path.basename(dirName)
-    // },
-    expect(false).toBe(true)
+  afterEach(() => {
+    jest.clearAllMocks()
   })
-  it('asks for project name', () => {
-    // {
-    //   name: 'gitRemote',
-    //     type: 'string',
-    //   message: "What's the Git remote URI?",
-    // default: answers => repoURL(protocol, dashify(answers.projectName))
-    // },
-    expect(false).toBe(true)
+  it('asks for project name in title format with a default', async () => {
+    await subject()
+    expect(inquirer.prompt).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'projectTitle',
+          type: 'string',
+          default: expect.any(String)
+        })
+      ])
+    )
   })
-  it('asks for project name', () => {
-    // {
-    //   name: 'semi',
-    //     type: 'confirm',
-    //   message: 'Do like semicolons in code?',
-    // default: true
-    // },
-    expect(false).toBe(true)
+  it('asks for project name in slug format with a default', async () => {
+    await subject()
+    expect(inquirer.prompt).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'projectSlug',
+          type: 'string',
+          default: expect.any(String)
+        })
+      ])
+    )
   })
-  it('asks for project name', () => {
-    // {
-    //   name: 'employee',
-    //     type: 'confirm',
-    //   message: 'Are you a Clevertech employee?',
-    // default: false
-    // },
-    expect(false).toBe(true)
+  it('asks to use browse or not', async () => {
+    await subject()
+    expect(inquirer.prompt).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'enableBrowse',
+          type: 'string',
+          default: true
+        })
+      ])
+    )
   })
-  it('asks for project name', () => {
-    // {
-    //   name: 'deployMode',
-    //     type: 'list',
-    //   message: 'What is the deploy mode?',
-    //   choices: ['k8s', 'ecs'],
-    // default: 'k8s'
-    // },
-    expect(false).toBe(true)
+  it('asks for dev api url with a default', async () => {
+    await subject()
+    expect(inquirer.prompt).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'devApiUrl',
+          type: 'string',
+          default: expect.any(String),
+          when: answers => answers.enableBrowse
+        })
+      ])
+    )
   })
-  it('asks for project name', () => {
-    // {
-    //   name: 'admin',
-    //     type: 'confirm',
-    //   message: 'Are you a Clevertech admin?',
-    // default: false,
-    //   when: answers => answers.employee
-    // }
-    expect(false).toBe(true)
+  it('asks for dev frontend url with a default', async () => {
+    await subject()
+    expect(inquirer.prompt).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'devFrontendUrl',
+          type: 'string',
+          default: expect.any(String),
+          when: answers => answers.enableBrowse
+        })
+      ])
+    )
+  })
+  it('asks for stage api url with a default', async () => {
+    await subject()
+    expect(inquirer.prompt).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'stageApiUrl',
+          type: 'string',
+          default: expect.any(String),
+          when: answers => answers.enableBrowse
+        })
+      ])
+    )
+  })
+  it('asks for stage frontend url with a default', async () => {
+    await subject()
+    expect(inquirer.prompt).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'stageFrontendUrl',
+          type: 'string',
+          default: expect.any(String),
+          when: answers => answers.enableBrowse
+        })
+      ])
+    )
+  })
+  it('asks for prod api url with a default', async () => {
+    await subject()
+    expect(inquirer.prompt).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'prodApiUrl',
+          type: 'string',
+          default: expect.any(String),
+          when: answers => answers.enableBrowse
+        })
+      ])
+    )
+  })
+  it('asks for prod frontend url with a default', async () => {
+    await subject()
+    expect(inquirer.prompt).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'prodFrontendUrl',
+          type: 'string',
+          default: expect.any(String),
+          when: answers => answers.enableBrowse
+        })
+      ])
+    )
+  })
+  // use Github? default yes
+  // Github url w/ default
+  // project description
+  // use sentry? default yes
+  // sentry url w/ default
+  // use sumologic? default yes
+  // sumologic url w/ default
+  it('asks to use github or not', async () => {
+    await subject()
+    expect(inquirer.prompt).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'enableGithub',
+          type: 'string',
+          default: true
+        })
+      ])
+    )
+  })
+  it('asks for remote git url (aka origin)', async () => {
+    await subject()
+    expect(inquirer.prompt).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'gitRemote',
+          type: 'string',
+          default: expect.any(String),
+          when: answers => answers.enableGithub
+        })
+      ])
+    )
+  })
+  it('asks if the user wants to use semicolons or not', async () => {
+    await subject()
+    expect(inquirer.prompt).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'semi',
+          type: 'confirm',
+          default: false
+        })
+      ])
+    )
+  })
+  it('asks if the user is an employee to toggle employee specific functionality', async () => {
+    await subject()
+    expect(inquirer.prompt).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'employee',
+          type: 'confirm',
+          default: false
+        })
+      ])
+    )
+  })
+  it('asks about deployment environment choices only when employee', async () => {
+    await subject()
+    expect(inquirer.prompt).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'deployMode',
+          type: 'list',
+          choices: ['k8s', 'ecs'],
+          default: 'k8s'
+        })
+      ])
+    )
+  })
+  it('asks if it should generate admin files or not', async () => {
+    await subject()
+    expect(inquirer.prompt).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'admin',
+          type: 'confirm',
+          default: false,
+          when: expect.any(Function)
+        })
+      ])
+    )
   })
 })
