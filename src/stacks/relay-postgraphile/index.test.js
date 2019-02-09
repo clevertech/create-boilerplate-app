@@ -1,4 +1,21 @@
-describe('Relay-Postgraphile Boilerplate Setup Script', () => {
+describe('Relay-Postgraphile configuration script', () => {
+  it('configures RPG-specific API settings', () => {
+    // setup project name
+    // setup env file (database connection, etc.)
+    // setup package.json file
+    expect(false).toBe(true)
+  })
+  it('configures RPG-specific Frontend settings', () => {
+    // setup project name
+    // setup env file (CHOKIDIR_USEPOLLING, no SSR...)
+    // setup package.json file
+    expect(false).toBe(true)
+  })
+  it('configures RPG-specific docker-compose settings', () => {
+    // ... redis?  /shrug
+    expect(false).toBe(true)
+  })
+
   it('clone down stack', () => {
     // clone down stack
     expect(false).toBe(true)

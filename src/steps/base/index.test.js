@@ -1,19 +1,29 @@
-import { REPO, NAME } from '.'
-import base from '.'
-import prompt from './prompt'
 import inquirer from 'inquirer'
 
+import { REPO, NAME } from '.'
+import base from '.'
 import clone from '../../utils/clone'
 import moveContentsToRoot from '../../utils/move'
 import deleteEmptyRootFolder from '../../utils/delete'
+import prompt from './prompt'
+import configureApi from './configureApi'
+import configureFrontend from './configureFrontend'
+import configureRoot from './configureRoot'
 
 jest.mock('../../utils/clone')
 jest.mock('../../utils/move')
 jest.mock('../../utils/delete')
 jest.mock('./prompt')
+jest.mock('./configureApi')
+jest.mock('./configureFrontend')
+jest.mock('./configureRoot')
 jest.mock('inquirer')
 
 describe('Base Stack Configuration', () => {
+  it('prompts for basic details', () => {
+    base()
+    expect(prompt).toHaveBeenCalled()
+  })
   it('clones down boilerplate index repo', () => {
     base()
     expect(REPO).not.toBe(undefined)
@@ -29,80 +39,16 @@ describe('Base Stack Configuration', () => {
     expect(NAME).not.toBe(undefined)
     expect(deleteEmptyRootFolder).toHaveBeenCalledWith(NAME)
   })
-  it('prompts for project name and applies it to config files', () => {
+  it('configures base api', () => {
     base()
-    expect(promptForBasicData).toHaveBeenCalledWith(NAME)
-    expect(inquirer.prompt).toHaveBeenCalledWith(
-      expect.arrayContaining({
-        name: 'projectName',
-        type: 'string',
-        message:
-          "What's the official name of the project? (e.g. The New York Times)",
-        default: path.basename(dirName)
-      })
-    )
-    expect('apply to config').toBe(false)
+    expect(configureApi).toHaveBeenCalled()
   })
-  it('prompts for gitRemote and applies it to config files', () => {
+  it('configures base frontend', () => {
     base()
-    expect(inquirer.prompt).toHaveBeenCalledWith(
-      expect.arrayContaining({
-        name: 'gitRemote',
-        type: 'string',
-        message: "What's the Git remote URI?",
-        default: answers => repoURL(protocol, dashify(answers.projectName))
-      })
-    )
-    expect('apply to config').toBe(false)
+    expect(configureFrontend).toHaveBeenCalled()
   })
-  it('prompts for semi and applies it to config files', () => {
+  it('configures base root folder', () => {
     base()
-    expect(inquir.prompt).toHaveBeenCalledWith(
-      expect.arrayContaining({
-        name: 'semi',
-        type: 'confirm',
-        message: 'Do like semicolons in code?',
-        default: true
-      })
-    )
-    expect('apply to config').toBe(false)
-  })
-  it('prompts for employee and applies it to config files', () => {
-    base()
-    expect(inquir.prompt).toHaveBeenCalledWith(
-      expect.arrayContaining({
-        name: 'employee',
-        type: 'confirm',
-        message: 'Are you a Clevertech employee?',
-        default: false
-      })
-    )
-    expect('apply to config').toBe(false)
-  })
-  it('prompts for deployMode and applies it to config files', () => {
-    base()
-    expect(inquir.prompt).toHaveBeenCalledWith(
-      expect.arrayContaining({
-        name: 'deployMode',
-        type: 'list',
-        message: 'What is the deploy mode?',
-        choices: ['k8s', 'ecs'],
-        default: 'k8s'
-      })
-    )
-    expect('apply to config').toBe(false)
-  })
-  it('prompts for admin and applies it to config files', () => {
-    base()
-    expect(inquir.prompt).toHaveBeenCalledWith(
-      expect.arrayContaining({
-        name: 'admin',
-        type: 'confirm',
-        message: 'Are you a Clevertech admin?',
-        default: false,
-        when: answers => answers.employee
-      })
-    )
-    expect('apply to config').toBe(false)
+    expect(configureRoot).toHaveBeenCalled()
   })
 })
