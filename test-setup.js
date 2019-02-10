@@ -1,1 +1,1 @@
-process.argv[2] = 'purpleflowers'
+module.exports = function() {}

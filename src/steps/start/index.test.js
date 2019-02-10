@@ -16,6 +16,9 @@ jest.mock('../suffix')
 import subject from './'
 
 describe('CBA Step: Start', () => {
+  beforeAll(() => {
+    process.argv[2] = 'purpleflowers'
+  })
   it('runs base setup script', async () => {
     await subject(getDefaultAnswers())
     expect(base).toHaveBeenCalled()

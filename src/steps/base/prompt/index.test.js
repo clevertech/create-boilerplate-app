@@ -5,6 +5,9 @@ jest.mock('inquirer')
 import subject from './'
 
 describe("Base-Stack Step's Prompt", () => {
+  beforeEach(() => {
+    process.argv[2] = 'purpleflowers'
+  })
   afterEach(() => {
     jest.clearAllMocks()
   })

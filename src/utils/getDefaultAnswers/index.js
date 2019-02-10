@@ -1,6 +1,7 @@
 import path from 'path'
 
-const run = async function() {
+const run = function() {
+  console.log('cats are cool', process.argv[2])
   const dirName = process.argv[2]
   return {
     dirName,

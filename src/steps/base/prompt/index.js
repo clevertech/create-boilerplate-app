@@ -2,7 +2,7 @@ import path from 'path'
 import inquirer from 'inquirer'
 
 const prompt = async function(answers) {
-  return inquirer.prompt([
+  return await inquirer.prompt([
     {
       name: 'projectName',
       type: 'string',
