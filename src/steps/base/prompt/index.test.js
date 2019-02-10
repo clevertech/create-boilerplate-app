@@ -18,6 +18,7 @@ describe("Base-Stack Step's Prompt", () => {
         expect.objectContaining({
           name: 'projectTitle',
           type: 'string',
+          message: expect.any(String),
           default: expect.any(String)
         })
       ])
@@ -30,6 +31,7 @@ describe("Base-Stack Step's Prompt", () => {
         expect.objectContaining({
           name: 'projectSlug',
           type: 'string',
+          message: expect.any(String),
           default: expect.any(String)
         })
       ])
@@ -41,6 +43,7 @@ describe("Base-Stack Step's Prompt", () => {
       expect.arrayContaining([
         expect.objectContaining({
           name: 'projectDescription',
+          message: expect.any(String),
           type: 'string',
           default: expect.any(String)
         })
@@ -52,6 +55,7 @@ describe("Base-Stack Step's Prompt", () => {
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining([
         expect.objectContaining({
+          message: expect.any(String),
           name: 'enableBrowse',
           type: 'confirm',
           default: true
@@ -66,8 +70,9 @@ describe("Base-Stack Step's Prompt", () => {
         expect.objectContaining({
           name: 'devApiUrl',
           type: 'string',
+          message: expect.any(String),
           default: expect.any(String),
-          when: answers => answers.enableBrowse
+          when: expect.any(Function)
         })
       ])
     )
@@ -79,8 +84,9 @@ describe("Base-Stack Step's Prompt", () => {
         expect.objectContaining({
           name: 'devFrontendUrl',
           type: 'string',
+          message: expect.any(String),
           default: expect.any(String),
-          when: answers => answers.enableBrowse
+          when: expect.any(Function)
         })
       ])
     )
@@ -92,8 +98,9 @@ describe("Base-Stack Step's Prompt", () => {
         expect.objectContaining({
           name: 'stageApiUrl',
           type: 'string',
+          message: expect.any(String),
           default: expect.any(String),
-          when: answers => answers.enableBrowse
+          when: expect.any(Function)
         })
       ])
     )
@@ -105,8 +112,9 @@ describe("Base-Stack Step's Prompt", () => {
         expect.objectContaining({
           name: 'stageFrontendUrl',
           type: 'string',
+          message: expect.any(String),
           default: expect.any(String),
-          when: answers => answers.enableBrowse
+          when: expect.any(Function)
         })
       ])
     )
@@ -118,8 +126,9 @@ describe("Base-Stack Step's Prompt", () => {
         expect.objectContaining({
           name: 'prodApiUrl',
           type: 'string',
+          message: expect.any(String),
           default: expect.any(String),
-          when: answers => answers.enableBrowse
+          when: expect.any(Function)
         })
       ])
     )
@@ -131,8 +140,9 @@ describe("Base-Stack Step's Prompt", () => {
         expect.objectContaining({
           name: 'prodFrontendUrl',
           type: 'string',
+          message: expect.any(String),
           default: expect.any(String),
-          when: answers => answers.enableBrowse
+          when: expect.any(Function)
         })
       ])
     )
@@ -144,6 +154,7 @@ describe("Base-Stack Step's Prompt", () => {
         expect.objectContaining({
           name: 'enableRemoteRepo',
           type: 'confirm',
+          message: expect.any(String),
           default: true
         })
       ])
@@ -156,8 +167,9 @@ describe("Base-Stack Step's Prompt", () => {
         expect.objectContaining({
           name: 'remoteRepo',
           type: 'string',
+          message: expect.any(String),
           default: expect.any(String),
-          when: answers => answers.enableRemoteRepo
+          when: expect.any(Function)
         })
       ])
     )
@@ -169,6 +181,7 @@ describe("Base-Stack Step's Prompt", () => {
         expect.objectContaining({
           name: 'semi',
           type: 'confirm',
+          message: expect.any(String),
           default: false
         })
       ])
@@ -181,6 +194,7 @@ describe("Base-Stack Step's Prompt", () => {
         expect.objectContaining({
           name: 'employee',
           type: 'confirm',
+          message: expect.any(String),
           default: false
         })
       ])
@@ -193,6 +207,7 @@ describe("Base-Stack Step's Prompt", () => {
         expect.objectContaining({
           name: 'deployMode',
           type: 'list',
+          message: expect.any(String),
           choices: ['k8s', 'ecs'],
           default: 'k8s'
         })
@@ -206,6 +221,7 @@ describe("Base-Stack Step's Prompt", () => {
         expect.objectContaining({
           name: 'admin',
           type: 'confirm',
+          message: expect.any(String),
           default: false,
           when: expect.any(Function)
         })
@@ -213,12 +229,44 @@ describe("Base-Stack Step's Prompt", () => {
     )
   })
   it('asks if should use sentry or not', async () => {
-    expect(false).toBe(true)
+    await subject(getDefaultAnswers())
+    expect(inquirer.prompt).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'enableSentry',
+          type: 'confirm',
+          message: expect.any(String),
+          default: true
+        })
+      ])
+    )
   })
-  it('asks for sentry url', async () => {
-    expect(false).toBe(true)
+  it('asks for sentry dev url', async () => {
+    await subject(getDefaultAnswers())
+    expect(inquirer.prompt).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'sentryDevUrl',
+          type: 'confirm',
+          message: expect.any(String),
+          default: false,
+          when: expect.any(Function)
+        })
+      ])
+    )
   })
   it('asks if should use sumologic or not', async () => {
-    expect(false).toBe(true)
+    await subject(getDefaultAnswers())
+    expect(inquirer.prompt).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'admin',
+          type: 'confirm',
+          message: expect.any(String),
+          default: false,
+          when: expect.any(Function)
+        })
+      ])
+    )
   })
 })

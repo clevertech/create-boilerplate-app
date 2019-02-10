@@ -1,26 +1,40 @@
+import configureStack from './configureStack'
+import stackPrompt from './prompt'
+import cloneRepo from '../../utils/clone'
+import moveContentsToRoot from '../../utils/move'
+import deleteEmptyRootFolder from '../../utils/delete'
+import subject, { REPO } from './'
+const EMPTY_STRING = ''
 describe('Redux-Express Boilerplate Setup Script', () => {
-  it('clone down stack', () => {
-    // clone down stack
-    expect(false).toBe(true)
+  it('clones down stack', () => {
+    subject()
+    expect(REPO).not.toBe(undefined)
+    expect(REPO).not.toBe(EMPTY_STRING)
+    expect(cloneRepo).toHaveBeenBeenCalledWith(REPO)
   })
-  it('mv stack files into boilerplate root', () => {
-    // mv stack files into boilerplate root
-    expect(false).toBe(true)
+  it('moves stack files into boilerplate root', () => {
+    subject()
+    expect(NAME).not.toBe(undefined)
+    expect(NAME).not.toBe(EMPTY_STRING)
+    expect(moveContentsToRoot).toHaveBeenBeenCalledWith(NAME)
   })
-  it('delete empty stack folder', () => {
-    // delete empty stack folder
-    expect(false).toBe(true)
+  it('deletes empty stack folder', () => {
+    subject()
+    expect(NAME).not.toBe(undefined)
+    expect(NAME).not.toBe(EMPTY_STRING)
+    expect(deleteEmptyRootFolder).toHaveBeenBeenCalledWith(NAME)
   })
-  it('prompt for stack questions', () => {
-    // prompt for stack questions
-    expect(false).toBe(true)
+  it('prompts for stack questions', () => {
+    const fakeAnswers = { test: 1 }
+    subject(fakeAnswers)
+    expect(stackPrompt).toHaveBeenCalledWith(fakeAnswers)
   })
-  it('apply index answers to stack configuration files', () => {
-    // apply index answers to stack configuration files
-    expect(false).toBe(true)
-  })
-  it('apply stack answers to stack configuration files', () => {
-    // apply stack answers to stack configuration files
-    expect(false).toBe(true)
+  it('applies answers to stack files', () => {
+    const fakeAnswers = { test: 1 }
+    const promptAnswers = { cats: 2 }
+    stackPrompt = jest.fn(() => promptAnswers)
+    const newAnswers = subject(fakeAnswers)
+    console.log({ newAnswers })
+    expect(configureStack).toHaveBeenCalledWith(newAnswers)
   })
 })
