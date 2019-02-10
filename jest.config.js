@@ -1,0 +1,3 @@
+{
+  "globalSetup": "test-setup.js"
+}
