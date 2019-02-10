@@ -53,7 +53,7 @@ describe("Base-Stack Step's Prompt", () => {
       expect.arrayContaining([
         expect.objectContaining({
           name: 'enableBrowse',
-          type: 'string',
+          type: 'confirm',
           default: true
         })
       ])
@@ -142,8 +142,8 @@ describe("Base-Stack Step's Prompt", () => {
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining([
         expect.objectContaining({
-          name: 'enableGithub',
-          type: 'string',
+          name: 'enableRemoteRepo',
+          type: 'confirm',
           default: true
         })
       ])
@@ -154,10 +154,10 @@ describe("Base-Stack Step's Prompt", () => {
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining([
         expect.objectContaining({
-          name: 'gitRemote',
+          name: 'remoteRepo',
           type: 'string',
           default: expect.any(String),
-          when: answers => answers.enableGithub
+          when: answers => answers.enableRemoteRepo
         })
       ])
     )
