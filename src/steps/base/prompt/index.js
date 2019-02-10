@@ -1,14 +1,14 @@
 import path from 'path'
 import inquirer from 'inquirer'
 
-const prompt = async function() {
+const prompt = async function(answers) {
   return inquirer.prompt([
     {
       name: 'projectName',
       type: 'string',
       message:
         "What's the official name of the project? (e.g. The New York Times)",
-      default: path.basename(process.argv[2])
+      default: path.basename(answers.dirName)
     },
     {
       name: 'gitRemote',

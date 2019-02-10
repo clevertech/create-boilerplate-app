@@ -1,9 +1,5 @@
-describe('Configuration of Root', () => {
-  // const updatePrettierConfiguration = async answers => {
-  //   const filePath = path.join(basedir, '.prettierrc.json')
-  //   const config = JSON.parse(await fs.readFile(filePath, 'utf8'))
-  //   config.semi = answers.semi
-  //   await fs.writeFile(filePath, JSON.stringify(config, null, 2))
-  // }
-  //
+describe('Configuration of prettier', () => {
+  it('sets semicolon preferences and defaults to no semicolons', () => {
+    expect(false).toBe('Some method for checking this')
+  })
 })

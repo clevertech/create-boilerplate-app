@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 
-const run = function() {
+const run = async function() {
   console.log()
   console.log('You are almost all set! Run the application with')
   console.log(chalk.cyan('🚀  docker/run'))

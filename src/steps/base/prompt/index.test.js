@@ -1,4 +1,5 @@
 import inquirer from 'inquirer'
+import getDefaultAnswers from '../../../utils/getDefaultAnswers'
 jest.mock('inquirer')
 
 import subject from './'
@@ -8,7 +9,7 @@ describe("Base-Stack Step's Prompt", () => {
     jest.clearAllMocks()
   })
   it('asks for project name in title format with a default', async () => {
-    await subject()
+    await subject(getDefaultAnswers())
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining([
         expect.objectContaining({
@@ -20,7 +21,7 @@ describe("Base-Stack Step's Prompt", () => {
     )
   })
   it('asks for project name in slug format with a default', async () => {
-    await subject()
+    await subject(getDefaultAnswers())
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining([
         expect.objectContaining({
@@ -31,8 +32,20 @@ describe("Base-Stack Step's Prompt", () => {
       ])
     )
   })
+  it('asks for project description', async () => {
+    await subject(getDefaultAnswers())
+    expect(inquirer.prompt).toHaveBeenCalledWith(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: 'projectDescription',
+          type: 'string',
+          default: expect.any(String)
+        })
+      ])
+    )
+  })
   it('asks to use browse or not', async () => {
-    await subject()
+    await subject(getDefaultAnswers())
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining([
         expect.objectContaining({
@@ -44,7 +57,7 @@ describe("Base-Stack Step's Prompt", () => {
     )
   })
   it('asks for dev api url with a default', async () => {
-    await subject()
+    await subject(getDefaultAnswers())
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining([
         expect.objectContaining({
@@ -57,7 +70,7 @@ describe("Base-Stack Step's Prompt", () => {
     )
   })
   it('asks for dev frontend url with a default', async () => {
-    await subject()
+    await subject(getDefaultAnswers())
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining([
         expect.objectContaining({
@@ -70,7 +83,7 @@ describe("Base-Stack Step's Prompt", () => {
     )
   })
   it('asks for stage api url with a default', async () => {
-    await subject()
+    await subject(getDefaultAnswers())
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining([
         expect.objectContaining({
@@ -83,7 +96,7 @@ describe("Base-Stack Step's Prompt", () => {
     )
   })
   it('asks for stage frontend url with a default', async () => {
-    await subject()
+    await subject(getDefaultAnswers())
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining([
         expect.objectContaining({
@@ -96,7 +109,7 @@ describe("Base-Stack Step's Prompt", () => {
     )
   })
   it('asks for prod api url with a default', async () => {
-    await subject()
+    await subject(getDefaultAnswers())
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining([
         expect.objectContaining({
@@ -109,7 +122,7 @@ describe("Base-Stack Step's Prompt", () => {
     )
   })
   it('asks for prod frontend url with a default', async () => {
-    await subject()
+    await subject(getDefaultAnswers())
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining([
         expect.objectContaining({
@@ -121,15 +134,8 @@ describe("Base-Stack Step's Prompt", () => {
       ])
     )
   })
-  // use Github? default yes
-  // Github url w/ default
-  // project description
-  // use sentry? default yes
-  // sentry url w/ default
-  // use sumologic? default yes
-  // sumologic url w/ default
   it('asks to use github or not', async () => {
-    await subject()
+    await subject(getDefaultAnswers())
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining([
         expect.objectContaining({
@@ -141,7 +147,7 @@ describe("Base-Stack Step's Prompt", () => {
     )
   })
   it('asks for remote git url (aka origin)', async () => {
-    await subject()
+    await subject(getDefaultAnswers())
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining([
         expect.objectContaining({
@@ -154,7 +160,7 @@ describe("Base-Stack Step's Prompt", () => {
     )
   })
   it('asks if the user wants to use semicolons or not', async () => {
-    await subject()
+    await subject(getDefaultAnswers())
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining([
         expect.objectContaining({
@@ -166,7 +172,7 @@ describe("Base-Stack Step's Prompt", () => {
     )
   })
   it('asks if the user is an employee to toggle employee specific functionality', async () => {
-    await subject()
+    await subject(getDefaultAnswers())
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining([
         expect.objectContaining({
@@ -178,7 +184,7 @@ describe("Base-Stack Step's Prompt", () => {
     )
   })
   it('asks about deployment environment choices only when employee', async () => {
-    await subject()
+    await subject(getDefaultAnswers())
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining([
         expect.objectContaining({
@@ -191,7 +197,7 @@ describe("Base-Stack Step's Prompt", () => {
     )
   })
   it('asks if it should generate admin files or not', async () => {
-    await subject()
+    await subject(getDefaultAnswers())
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining([
         expect.objectContaining({
@@ -202,5 +208,14 @@ describe("Base-Stack Step's Prompt", () => {
         })
       ])
     )
+  })
+  it('asks if should use sentry or not', async () => {
+    expect(false).toBe(true)
+  })
+  it('asks for sentry url', async () => {
+    expect(false).toBe(true)
+  })
+  it('asks if should use sumologic or not', async () => {
+    expect(false).toBe(true)
   })
 })

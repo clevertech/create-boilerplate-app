@@ -4,7 +4,7 @@ export const REPO = 'https://github.com/chadfurman/boilerplate'
 // delete empty boilerplate index folder
 // prompt for index questions
 // apply index answers to index configuration files
-const run = function(answers) {
+const run = async function(answers) {
   if (answers.admin) {
     console.log()
     console.log('Use the following helm files:')

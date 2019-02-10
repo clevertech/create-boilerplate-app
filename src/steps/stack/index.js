@@ -1,3 +1,3 @@
-const run = function() {}
+const run = async function() {}
 
 export default run

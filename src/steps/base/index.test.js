@@ -6,16 +6,12 @@ import clone from '../../utils/clone'
 import moveContentsToRoot from '../../utils/move'
 import deleteEmptyRootFolder from '../../utils/delete'
 import prompt from './prompt'
-import configureApi from './configureApi'
-import configureFrontend from './configureFrontend'
 import configureRoot from './configureRoot'
 
 jest.mock('../../utils/clone')
 jest.mock('../../utils/move')
 jest.mock('../../utils/delete')
 jest.mock('./prompt')
-jest.mock('./configureApi')
-jest.mock('./configureFrontend')
 jest.mock('./configureRoot')
 jest.mock('inquirer')
 
@@ -38,14 +34,6 @@ describe('Base Stack Configuration', () => {
     base()
     expect(NAME).not.toBe(undefined)
     expect(deleteEmptyRootFolder).toHaveBeenCalledWith(NAME)
-  })
-  it('configures base api', () => {
-    base()
-    expect(configureApi).toHaveBeenCalled()
-  })
-  it('configures base frontend', () => {
-    base()
-    expect(configureFrontend).toHaveBeenCalled()
   })
   it('configures base root folder', () => {
     base()
