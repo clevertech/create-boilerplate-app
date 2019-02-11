@@ -8,31 +8,24 @@ jest.mock('./configureApi')
 jest.mock('./configureFrontend')
 jest.mock('./configureRoot')
 
-const mockTest = () => {
-  expect(false).toBe(true)
-}
 const fakeAnswers = { test: 2 }
 describe('Redux-express stack script', () => {
-  it('clone down stack', mockTest)
-  it('mv stack files into boilerplate root', mockTest)
-  it('delete empty stack folder', mockTest)
-  it('prompt for stack questions', mockTest)
-  it('configures API', () => {
-    subject(fakeAnswers)
+  it('configures API', async () => {
+    await subject(fakeAnswers)
     expect(configureApi).toHaveBeenCalledWith(
-      expect.objectContaining({ fakeAnswers })
+      expect.objectContaining(fakeAnswers)
     )
   })
-  it('configures Frontend', () => {
-    subject(fakeAnswers)
+  it('configures Frontend', async () => {
+    await subject(fakeAnswers)
     expect(configureFrontend).toHaveBeenCalledWith(
-      expect.objectContaining({ fakeAnswers })
+      expect.objectContaining(fakeAnswers)
     )
   })
-  it('configures Root', () => {
-    subject(fakeAnswers)
+  it('configures Root', async () => {
+    await subject(fakeAnswers)
     expect(configureRoot).toHaveBeenCalledWith(
-      expect.objectContaining({ fakeAnswers })
+      expect.objectContaining(fakeAnswers)
     )
   })
 })

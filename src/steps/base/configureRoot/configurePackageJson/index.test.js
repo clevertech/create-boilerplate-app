@@ -1,5 +1,3 @@
-import generateRandom from '../../../../utils/generateRandom'
-
 import subject from './'
 describe('Update Root Package JSON', () => {
   it('uses correct project name', () => {

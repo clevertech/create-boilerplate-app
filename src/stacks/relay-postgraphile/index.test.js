@@ -1,24 +1,19 @@
-const mockTest = () => {
-  expect(false).toBe(true)
-}
-describe('Relay-Postgraphile configuration script', () => {
-  it('configures RPG-specific API settings', () => {
-    // setup project name
-    // setup env file (database connection, etc.)
-    // setup package.json file
-    expect(false).toBe(true)
+import configureStack from './configureStack'
+import stackPrompt from './prompt'
+import subject from './'
+
+jest.mock('./configureStack')
+jest.mock('./prompt')
+
+const fakeAnswers = { test: 1 }
+describe('Relay-Postgraphile Boilerplate Setup Script', () => {
+  it('prompts for stack questions', async () => {
+    await subject(fakeAnswers)
+    expect(stackPrompt).toHaveBeenCalledWith(fakeAnswers)
   })
-  it('configures RPG-specific Frontend settings', () => {
-    // setup project name
-    // setup env file (CHOKIDIR_USEPOLLING, no SSR...)
-    // setup package.json file
-    expect(false).toBe(true)
+  it('applies answers to stack files', async () => {
+    const newAnswers = await subject(fakeAnswers)
+    console.log({ newAnswers })
+    expect(configureStack).toHaveBeenCalledWith(newAnswers)
   })
-  it('configures RPG-specific docker-compose settings', mockTest)
-  it('clone down stack', mockTest)
-  it('mv stack files into boilerplate root', mockTest)
-  it('delete empty stack folder', mockTest)
-  it('prompt for stack questions', mockTest)
-  it('apply index answers to stack configuration files', mockTest)
-  it('apply stack answers to stack configuration files', mockTest)
 })

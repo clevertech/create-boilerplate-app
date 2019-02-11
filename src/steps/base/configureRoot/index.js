@@ -1,8 +1,11 @@
-const main = function() {
-  // setup project name
-  // setup env file (database connection, etc.)
-  // setup package.json file
-  // update prettier configuration
+import configureProjectName from './configureProjectName'
+import configurePackageJson from './configurePackageJson'
+import configurePrettierConfig from './configurePrettierConfig'
+
+const main = function(answers) {
+  configureProjectName(answers)
+  configurePackageJson(answers)
+  configurePrettierConfig(answers)
 }
 
 export default main
@@ -68,7 +71,7 @@ export default main
 //   await fs.writeFile(filePath, JSON.stringify(config, null, 2))
 // }
 //
-// const useProjectName = async answers => {
+// const configureProjectName = async answers => {
 //   const files = ['api/Makefile', 'frontend/Makefile', 'docker/run']
 //   for (const file of files) {
 //     const filePath = path.join(basedir, file)

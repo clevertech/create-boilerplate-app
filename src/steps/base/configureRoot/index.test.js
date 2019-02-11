@@ -1,9 +1,9 @@
-import updatePackageJson from './updatePackageJson'
-import updatePrettierConfig from './updatePrettierConfig'
-import useProjectName from './useProjectName'
-jest.mock('./updatePackageJson')
-jest.mock('./updatePrettierConfig')
-jest.mock('./useProjectName')
+import updatePackageJson from './configurePackageJson'
+import updatePrettierConfig from './configurePrettierConfig'
+import useProjectName from './configureProjectName'
+jest.mock('./configurePackageJson')
+jest.mock('./configurePrettierConfig')
+jest.mock('./configureProjectName')
 
 import subject from './'
 

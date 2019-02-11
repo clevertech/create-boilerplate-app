@@ -39,9 +39,9 @@ const prompt = async function(answers) {
     },
     {
       name: 'devFrontendUrl',
-      type: 'string (can be changed in package.json later)',
+      type: 'string',
       default: '',
-      message: 'Dev Frontend Url?',
+      message: 'Dev Frontend Url? (can be changed in package.json later)',
       when: answers => answers.enableBrowse
     },
     {
@@ -80,11 +80,12 @@ const prompt = async function(answers) {
       default: true
     },
     {
-      name: 'remoteRepo',
+      name: 'remoteRepoUrl',
       type: 'string',
       message: "What's the remote repo URI?",
-      when: answers => answers.enableRemoteRepo,
-      default: answers => `git@github.com:clevertech/${answers.projectSlug}.git`
+      default: answers =>
+        `git@github.com:clevertech/${answers.projectSlug}.git`,
+      when: answers => answers.enableRemoteRepo
     },
     {
       name: 'semi',

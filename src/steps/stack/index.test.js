@@ -1,14 +1,9 @@
 describe('Stack Setup Script', () => {
-  it('get list of stack choices by counting toplevel javascript files in the "stacks" folder', () => {
-    // get list of stack choices by counting toplevel javascript files in the 'stacks' folder
-    expect(false).toBe(true)
-  })
-  it('prompt for stack choice', () => {
-    // prompt for stack choice
-    expect(false).toBe(true)
-  })
-  it('run chosen stack setup script', () => {
-    // run chosen stack setup script
-    expect(false).toBe(true)
-  })
+  test.todo(
+    'get list of stack choices by counting toplevel javascript files in the "stacks" folder'
+  )
+  test.todo('prompt for stack choice')
+  test.todo('move selected stack files into project root')
+  test.todo('delete stack directory from project root')
+  test.todo('run chosen stack setup script')
 })

@@ -1,5 +1,3 @@
 describe('Suffix step', () => {
-  it('prints a post-setup message', () => {
-    expect(false).toBe(true)
-  })
+  test.todo('prints a post-setup message')
 })

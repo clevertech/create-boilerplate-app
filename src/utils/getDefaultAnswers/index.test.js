@@ -1,16 +1,16 @@
 import subject from '.'
 
-describe('Configuration cleanup', () => {
+const projectName = 'purpleflowers'
+describe('Get Default Answers utility', () => {
+  beforeEach(() => {
+    process.argv[2] = projectName
+  })
   it('returns dirname from argv[2]', () => {
-    process.argv[2] = 'purpleflowers'
     const values = subject()
-    expect(values).toBe(expect.objectContaining({ dirName: 'purpleflowers' }))
+    expect(values.dirName).toBe(projectName)
   })
   it('returns basedir from processing argv[2]', () => {
-    process.argv[2] = 'purpleflowers'
     const values = subject()
-    expect(values).toBe(
-      expect.objectContaining({ baseDir: expect.any(String) })
-    )
+    expect(values.baseDir).toMatch(RegExp(projectName + '$'))
   })
 })

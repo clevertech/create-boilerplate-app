@@ -1,5 +1,11 @@
-describe('Move util', () => {
-  it('Generates a random string for use as a hostname or a db password in local dev config files etc', () => {
-    expect(false).toBe('Some method for checking this')
+import subject from './'
+describe('Generate random utility', () => {
+  it('Generates a random, case-sensitive alpha-numeric string with a length requirement', async () => {
+    const randomString = await subject(10)
+    expect(randomString).toEqual(
+      expect.stringMatching(
+        /[ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789]{10}/
+      )
+    )
   })
 })

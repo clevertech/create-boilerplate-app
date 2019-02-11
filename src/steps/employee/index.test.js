@@ -1,18 +1,11 @@
-describe('Configuration cleanup', () => {
-  it('deletes boilerplate git dir', () => {
-    // delete git dir
-    expect(false).toBe(true)
-  })
-  it('inits new git project', () => {
-    // init git dir
-    expect(false).toBe(true)
-  })
-  it('installs yarn dependencies', () => {
-    // yarn
-    expect(false).toBe(true)
-  })
-  it('makes the initial commit', () => {
-    // commit
-    expect(false).toBe(true)
-  })
+describe('Employee-specific configuration', () => {
+  test.todo('clones down boilerplate-extras repo')
+  test.todo('moves terraform into place')
+  test.todo('moves makefiles into place')
+  test.todo('moves appropriate buildspec into place')
+  test.todo('extends readme')
+  test.todo('removes boilerplate-extra folder')
+  test.todo('writes project name to Makefiles (API and Frontend)')
+  test.todo('uses project name for Helm repository')
+  test.todo('uses project name for Helm subdomain')
 })

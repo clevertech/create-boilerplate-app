@@ -165,10 +165,10 @@ describe("Base-Stack Step's Prompt", () => {
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining([
         expect.objectContaining({
-          name: 'remoteRepo',
+          name: 'remoteRepoUrl',
           type: 'string',
           message: expect.any(String),
-          default: expect.any(String),
+          default: expect.any(Function),
           when: expect.any(Function)
         })
       ])
@@ -215,47 +215,6 @@ describe("Base-Stack Step's Prompt", () => {
     )
   })
   it('asks if it should generate admin files or not', async () => {
-    await subject(getDefaultAnswers())
-    expect(inquirer.prompt).toHaveBeenCalledWith(
-      expect.arrayContaining([
-        expect.objectContaining({
-          name: 'admin',
-          type: 'confirm',
-          message: expect.any(String),
-          default: false,
-          when: expect.any(Function)
-        })
-      ])
-    )
-  })
-  it('asks if should use sentry or not', async () => {
-    await subject(getDefaultAnswers())
-    expect(inquirer.prompt).toHaveBeenCalledWith(
-      expect.arrayContaining([
-        expect.objectContaining({
-          name: 'enableSentry',
-          type: 'confirm',
-          message: expect.any(String),
-          default: true
-        })
-      ])
-    )
-  })
-  it('asks for sentry dev url', async () => {
-    await subject(getDefaultAnswers())
-    expect(inquirer.prompt).toHaveBeenCalledWith(
-      expect.arrayContaining([
-        expect.objectContaining({
-          name: 'sentryDevUrl',
-          type: 'confirm',
-          message: expect.any(String),
-          default: false,
-          when: expect.any(Function)
-        })
-      ])
-    )
-  })
-  it('asks if should use sumologic or not', async () => {
     await subject(getDefaultAnswers())
     expect(inquirer.prompt).toHaveBeenCalledWith(
       expect.arrayContaining([
