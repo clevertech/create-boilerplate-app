@@ -9,7 +9,7 @@ jest.mock('./configurePackageJson')
 jest.mock('./configureYarnWorkspaces')
 
 const answers = { test: 'asdf' }
-describe('Redux-Express stack root folder configuration', () => {
+describe('Relay Postgraphile stack root folder configuration', () => {
   beforeEach(() => subject(answers))
   afterEach(jest.resetAllMocks)
 

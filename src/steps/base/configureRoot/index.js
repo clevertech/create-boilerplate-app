@@ -1,4 +1,4 @@
-import configureProjectName from './configureProjectName'
+import configureProjectName from '../../cleanup/configureProjectName'
 import configurePackageJson from './configurePackageJson'
 import configurePrettierConfig from './configurePrettierConfig'
 
