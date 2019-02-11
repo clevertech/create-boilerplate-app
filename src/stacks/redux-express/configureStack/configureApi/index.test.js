@@ -7,7 +7,7 @@ jest.mock('./configureEnvFile')
 jest.mock('./configurePackageJson')
 
 const fakeAnswers = { test: 'asdf' }
-describe('Redux-Express stack API configuration', () => {
+describe('API configuration', () => {
   beforeEach(() => subject(fakeAnswers))
   it('sets up env file (database connection, etc.)', () => {
     expect(configureEnvFile).toHaveBeenCalledWith(fakeAnswers)
