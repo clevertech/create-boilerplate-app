@@ -1,4 +1,6 @@
-const run = function() {
-  // it('Moves the contents of a folder into the current working directory', () => {
+import exec from '../exec'
+const run = async function(dir) {
+  if (!dir || dir === '') return
+  await exec(`mv ./${dir}/.* ./`)
 }
 export default run
