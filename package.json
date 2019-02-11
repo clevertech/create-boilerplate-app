@@ -40,6 +40,9 @@
     "prettier": "^1.9.2"
   },
   "jest": {
-    "globalSetup": "./test-setup.js"
+    "globalSetup": "./test-setup.js",
+    "moduleNameMapper": {
+      "docker-compose.yml": "./src/__mocks__/docker-compose.yml"
+    }
   }
 }
