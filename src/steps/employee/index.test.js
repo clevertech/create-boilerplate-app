@@ -1,11 +1,37 @@
+import cloneExtra from './cloneExtra'
+import moveExtra from './moveExtra'
+import configureExtra from './configureExtra'
+import cleanupExtra from './cleanupExtra'
+
+import subject from './'
+
+jest.mock('./cloneExtra')
+jest.mock('./moveExtra')
+jest.mock('./configureExtra')
+jest.mock('./cleanupExtra')
+
+const fakeAnswers = { test: 123123 }
 describe('Employee-specific configuration', () => {
-  test.todo('clones down boilerplate-extras repo')
-  test.todo('moves terraform into place')
-  test.todo('moves makefiles into place')
-  test.todo('moves appropriate buildspec into place')
-  test.todo('extends readme')
-  test.todo('removes boilerplate-extra folder')
-  test.todo('writes project name to Makefiles (API and Frontend)')
-  test.todo('uses project name for Helm repository')
-  test.todo('uses project name for Helm subdomain')
+  beforeEach(() => subject(fakeAnswers))
+  afterEach(jest.resetAllMocks)
+
+  // cloneExtra()
+  test.todo('clones down boilerplate-extras repo', () => {
+    expect(cloneExtra).toHaveBeenCalledWith(fakeAnswers)
+  })
+
+  // moveExtra()
+  test.todo('moves select boilerplate-extra files into place', () => {
+    expect(moveExtra).toHaveBeenCalledWith(fakeAnswers)
+  })
+
+  // configureExtra()
+  test.todo('configures extra files', () => {
+    expect(configureExtra).toHaveBeenCalledWith(fakeAnswers)
+  })
+
+  // cleanupExtra()
+  test.todo('removes boilerplate-extra left overs', () => {
+    expect(cleanupExtra).toHaveBeenCalledWith(fakeAnswers)
+  })
 })
