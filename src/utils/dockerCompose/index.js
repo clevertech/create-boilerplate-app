@@ -1,11 +1,22 @@
-// import fs from 'fs'
+import yaml from 'yamljs'
+import { readFile, writeFile } from 'fs'
 
-const main = async function(packageJsonPath, update) {
-  // if (!packageJsonPath) return
-  // const packageObj = require(packageJsonPath)
-  // const newPackageObj = Object.assign(packageObj, update)
-  // fs.writeFile(packageJsonPath, JSON.stringify(newPackageObj, null, 2))
-  // return newPackageObj
+import { promisify } from 'util'
+
+const asyncReadFile = promisify(readFile)
+
+const main = async function(dockerComposePath, update) {
+  if (!dockerComposePath) return
+
+  const dockerComposeSource = await asyncReadFile(dockerComposePath, 'utf8')
+  const dockerComposeObj = yaml.parse(dockerComposeSource)
+
+  if (!update) return dockerComposeObj
+
+  const newDockerComposeObj = Object.assign(dockerComposeObj, update)
+  writeFile(dockerComposePath, yaml.stringify(newDockerComposeObj, 4, 2))
+
+  return newDockerComposeObj
 }
 
 export default main

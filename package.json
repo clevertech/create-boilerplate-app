@@ -41,8 +41,18 @@
   },
   "jest": {
     "globalSetup": "./test-setup.js",
+    "modulePaths": [
+      "<rootDir>"
+    ],
     "moduleNameMapper": {
-      "docker-compose.yml": "./src/__mocks__/docker-compose.yml"
-    }
+      "docker-compose": "__mocks__/docker-compose"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue",
+      "yml",
+      "scss"
+    ]
   }
 }
