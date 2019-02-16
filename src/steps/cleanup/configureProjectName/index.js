@@ -1,4 +1,5 @@
-const run = async function() {
+const run = async function(answers) {
+  return answers
   //
   // function setImageNames(composeConfig, keys, name) {
   //   keys.forEach(function(key) {

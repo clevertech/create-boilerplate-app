@@ -1,6 +1,6 @@
 import moveTerraform from './moveTerraform'
 import moveMakefiles from './moveMakefiles'
-import moveBuildspec from './moveBuildspec'
+import moveBuildspec from './moveBuildspecs'
 
 const run = async function(answers) {
   answers = await moveTerraform(answers)

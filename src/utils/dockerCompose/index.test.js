@@ -1,44 +1,52 @@
 import subject from './'
 import fs from 'fs'
 
-jest.spyOn(fs, 'writeFile')
+jest.mock('fs')
 
-describe('docker-compose utility', () => {
-  afterEach(jest.resetAllMocks)
+fs.readFile.mockImplementation((path, options, callback) =>
+  callback(null, 'rootDocker: true')
+)
+fs.writeFile.mockImplementation((path, options, callback) =>
+  callback(null, 'rootDocker: true')
+)
 
-  it('does nothing with no params', async done => {
+describe('docker-compose utility', async () => {
+  afterEach(jest.clearAllMocks)
+
+  it('does nothing with no params', async () => {
     const result = await subject()
     expect(result).toEqual(undefined)
-    done()
   })
 
-  it('retrieves docker-compose file when called with one param', async done => {
-    const oldRead = fs.readFile
-    fs.readFile = jest.fn()
-    fs.readFile.mockReturnValue('rootDocker: true')
+  it('retrieves docker-compose file when called with one param', async () => {
     const result = await subject('__mocks__/docker-compose.yml')
+    expect(fs.readFile).toHaveBeenCalledWith(
+      '__mocks__/docker-compose.yml',
+      expect.anything(),
+      expect.any(Function)
+    )
     expect(result.rootDocker).toEqual(true)
-    fs.readFile = oldRead
-    done()
   })
 
-  it('will update docker-compose file when called with 2nd param', async done => {
+  it('will update docker-compose file when called with 2nd param', async () => {
     const result = await subject('__mocks__/docker-compose.yml', {
       rootDocker: false
     })
     expect(result.rootDocker).toEqual(false)
     expect(fs.writeFile).toHaveBeenCalledWith(
       '__mocks__/docker-compose.yml',
-      expect.stringMatching(/rootDocker: false/)
+      expect.stringMatching(/rootDocker: false/),
+      expect.any(Function)
     )
+
     const result2 = await subject('__mocks__/docker-compose.yml', {
       rootDocker: true
     })
     expect(result2.rootDocker).toEqual(true)
     expect(fs.writeFile).toHaveBeenCalledWith(
       '__mocks__/docker-compose.yml',
-      expect.stringMatching(/rootDocker: true/)
+      expect.stringMatching(/rootDocker: true/),
+      expect.any(Function)
     )
-    done()
   })
 })

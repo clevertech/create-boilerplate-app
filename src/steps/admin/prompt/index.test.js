@@ -1,4 +1,4 @@
-describe('admin prompt', () => {
+describe('admin promptBase', () => {
   test.todo('prompts for db host')
   test.todo('prompts for db user')
   test.todo('prompts for db password')

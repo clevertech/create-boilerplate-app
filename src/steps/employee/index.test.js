@@ -5,33 +5,39 @@ import cleanupExtra from './cleanupExtra'
 
 import subject from './'
 
-jest.mock('./cloneExtra')
-jest.mock('./moveExtra')
-jest.mock('./configureExtra')
-jest.mock('./cleanupExtra')
+jest.mock('./cloneExtra', () => jest.fn(answers => answers))
+jest.mock('./moveExtra', () => jest.fn(answers => answers))
+jest.mock('./configureExtra', () => jest.fn(answers => answers))
+jest.mock('./cleanupExtra', () => jest.fn(answers => answers))
 
 const fakeAnswers = { test: 123123 }
 describe('Employee-specific configuration', () => {
-  beforeEach(() => subject(fakeAnswers))
-  afterEach(jest.resetAllMocks)
-
-  // cloneExtra()
-  test.todo('clones down boilerplate-extras repo', () => {
-    expect(cloneExtra).toHaveBeenCalledWith(fakeAnswers)
-  })
+  afterEach(jest.clearAllMocks)
 
   // moveExtra()
-  test.todo('moves select boilerplate-extra files into place', () => {
+  it('moves select boilerplate-extra files into place', async () => {
+    const answers = await subject(fakeAnswers)
+    expect(answers).toEqual(expect.objectContaining(fakeAnswers))
     expect(moveExtra).toHaveBeenCalledWith(fakeAnswers)
   })
 
+  it('clones down boilerplate-extras repo', async () => {
+    const answers = await subject(fakeAnswers)
+    expect(answers).toEqual(expect.objectContaining(fakeAnswers))
+    expect(cloneExtra).toHaveBeenCalledWith(fakeAnswers)
+  })
+
   // configureExtra()
-  test.todo('configures extra files', () => {
+  it('configures extra files', async () => {
+    const answers = await subject(fakeAnswers)
+    expect(answers).toEqual(expect.objectContaining(fakeAnswers))
     expect(configureExtra).toHaveBeenCalledWith(fakeAnswers)
   })
 
   // cleanupExtra()
-  test.todo('removes boilerplate-extra left overs', () => {
+  it('removes boilerplate-extra left overs', async () => {
+    const answers = await subject(fakeAnswers)
+    expect(answers).toEqual(expect.objectContaining(fakeAnswers))
     expect(cleanupExtra).toHaveBeenCalledWith(fakeAnswers)
   })
 })

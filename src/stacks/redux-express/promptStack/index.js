@@ -1,8 +1,9 @@
 import inquirer from 'inquirer'
+
 export const DB_NAMES = ['postgres', 'mysql']
 export const DB_DEFAULT = 'postgres'
 const main = async function(answers) {
-  const newAnswers = inquirer.prompt([
+  const newAnswers = await inquirer.prompt([
     {
       name: 'dbEngine',
       type: 'list',
@@ -11,7 +12,8 @@ const main = async function(answers) {
       message: expect.any(String)
     }
   ])
-  return Object.assign(answers, newAnswers)
+  answers.stack = Object.assign(answers.stack || {}, { prompt: newAnswers })
+  return answers
 }
 
 export default main

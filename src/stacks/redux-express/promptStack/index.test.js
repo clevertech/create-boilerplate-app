@@ -1,13 +1,18 @@
 import inquirer from 'inquirer'
+
 import subject, { DB_NAMES, DB_DEFAULT } from './'
 
 jest.mock('inquirer')
+inquirer.prompt.mockImplementation(() => ({}))
 
 const fakeAnswers = { cat: 2 }
 describe('Redux-Express stack prompt', () => {
   it('returns new answers', async () => {
     const newAnswers = await subject(fakeAnswers)
     expect(newAnswers).toEqual(expect.objectContaining(fakeAnswers))
+    expect(newAnswers).toEqual(
+      expect.objectContaining({ stack: { prompt: expect.any(Object) } })
+    )
   })
   it('exports database name choices', () => {
     expect(DB_NAMES).not.toEqual(undefined)

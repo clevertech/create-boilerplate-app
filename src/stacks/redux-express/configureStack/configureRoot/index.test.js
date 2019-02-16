@@ -6,19 +6,22 @@ import subject from './'
 jest.mock('./configureDockerCompose')
 jest.mock('./configurePackageJson')
 
-const answers = { test: 'asdf' }
-describe('Stack: root folder configuration', () => {
-  beforeEach(() => subject(answers))
-  afterEach(jest.resetAllMocks)
+const fakeAnswers = { test: 'asdf' }
+describe('Stack: root folder configuration', async () => {
+  afterEach(jest.clearAllMocks)
 
-  it('configures docker-compose', () => {
+  it('configures docker-compose', async () => {
+    const answers = await subject(fakeAnswers)
+    expect(answers).toEqual(expect.objectContaining(fakeAnswers))
     expect(configureDockerCompose).toHaveBeenCalledWith(
-      expect.objectContaining(answers)
+      expect.objectContaining(fakeAnswers)
     )
   })
-  it('configures package.json', () => {
+  it('configures package.json', async () => {
+    const answers = await subject(fakeAnswers)
+    expect(answers).toEqual(expect.objectContaining(fakeAnswers))
     expect(configurePackageJson).toHaveBeenCalledWith(
-      expect.objectContaining(answers)
+      expect.objectContaining(fakeAnswers)
     )
   })
 })

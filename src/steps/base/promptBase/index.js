@@ -2,7 +2,7 @@ import path from 'path'
 import inquirer from 'inquirer'
 
 const prompt = async function(answers) {
-  return await inquirer.prompt([
+  const newAnswers = await inquirer.prompt([
     {
       name: 'projectTitle',
       type: 'string',
@@ -114,6 +114,9 @@ const prompt = async function(answers) {
       when: answers => answers.employee
     }
   ])
+
+  answers.base = Object.assign(answers.base || {}, { prompt: newAnswers })
+  return answers
 }
 
 export default prompt

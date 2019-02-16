@@ -5,7 +5,7 @@ jest.mock('fs')
 jest.mock('package.json', () => ({ rootJson: true }), { virtual: true })
 
 describe('package.json utility', () => {
-  afterEach(jest.resetAllMocks)
+  afterEach(jest.clearAllMocks)
   it('does nothing with no params', async () => {
     const result = await subject()
     expect().toEqual(undefined)

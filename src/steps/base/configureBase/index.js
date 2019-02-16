@@ -1,11 +1,10 @@
-import configureProjectName from '../../cleanup/configureProjectName'
 import configurePackageJson from './configurePackageJson'
 import configurePrettierConfig from './configurePrettierConfig'
 
-const main = function(answers) {
-  configureProjectName(answers)
-  configurePackageJson(answers)
-  configurePrettierConfig(answers)
+const main = async function(answers) {
+  answers = await configurePackageJson(answers)
+  answers = await configurePrettierConfig(answers)
+  return answers
 }
 
 export default main

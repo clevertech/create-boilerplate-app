@@ -5,9 +5,9 @@ jest.mock('./configurePrettierConfig')
 
 import subject from './'
 
-describe('Configuration of Root', () => {
-  it('updates package.json file', () => {
-    subject()
+describe('Configuration of Root', async () => {
+  it('updates package.json file', async () => {
+    const answers = await subject()
     expect(updatePackageJson).toHaveBeenCalled()
   })
   it('updates prettier configuration', () => {
