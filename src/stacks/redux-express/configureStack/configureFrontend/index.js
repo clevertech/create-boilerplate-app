@@ -1,7 +1,9 @@
 import configurePackageJson from './configurePackageJson'
+import moveEnvFile from './moveEnvFile'
 
 const main = async function(answers) {
-  await configurePackageJson(answers)
+  answers = await configurePackageJson(answers)
+  answers = await moveEnvFile(answers)
   return answers
 }
 
