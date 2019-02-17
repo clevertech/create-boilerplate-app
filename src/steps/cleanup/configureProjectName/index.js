@@ -1,9 +1,5 @@
 const run = async function(answers) {
-  // compose var has project name
-  const createRootEnvFile = async answers => {
-    const content = `COMPOSE_PROJECT_NAME=${toSnakeCase(answers.projectName)}\n`
-    await fs.writeFile(path.join(basedir, '.env'), content)
-  }
+  // makefiles
   return answers
   //
   // function setImageNames(composeConfig, keys, name) {

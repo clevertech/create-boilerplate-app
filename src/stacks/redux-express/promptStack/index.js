@@ -9,7 +9,7 @@ const main = async function(answers) {
       type: 'list',
       choices: DB_NAMES,
       default: DB_DEFAULT,
-      message: expect.any(String)
+      message: 'Select your preferred database engine'
     }
   ])
   answers.stack = Object.assign(answers.stack || {}, { prompt: newAnswers })
