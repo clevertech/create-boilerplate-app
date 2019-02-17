@@ -124,38 +124,6 @@ const updateDockerCompose = async (answers, dbPassword) => {
   await fs.writeFile(dockerComposePath, yaml.stringify(dockerCompose, 4, 2))
 }
 
-const updateEnvFile = async (answers, dbPassword) => {
-  const envPath = path.join(basedir, 'api/.env.example')
-  const envSource = await fs.readFile(envPath, 'utf8')
-  const changes = {
-    DB_DATABASE: toSnakeCase(answers.projectName) + '_local',
-    DB_USER: toSnakeCase(answers.projectName),
-    DB_PASSWORD: dbPassword,
-    DB_ENGINE: answers.databaseEngine,
-    DB_PORT: databases[answers.databaseEngine].port,
-    HEALTH_CHECK_SECRET: nanoid(),
-    SESSION_SECRET: nanoid()
-  }
-  const envNewSource = envSource
-    .split('\n')
-    .map(line => {
-      for (const key of Object.keys(changes)) {
-        if (line.startsWith(key + '=')) {
-          return `${key}=${changes[key]}`
-        }
-      }
-      return line
-    })
-    .join('\n')
-  await fs.writeFile(envPath, envNewSource)
-
-  // copy to .env
-  await fs.copy(
-    path.join(basedir, 'api/.env.example'),
-    path.join(basedir, 'api/.env')
-  )
-}
-
 const updateAPIPackageJSON = async answers => {
   const packageJSONPath = path.join(basedir, 'api/package.json')
   const packageJSON = require(packageJSONPath)
@@ -266,7 +234,7 @@ const useProjectName = async answers => {
   for (const file of files) {
     const filePath = path.join(basedir, file)
     // Some files do not exist if you are not a Clevertech employee
-    if (!await fs.exists(filePath)) continue
+    if (!(await fs.exists(filePath))) continue
     const source = await fs.readFile(filePath, 'utf8')
     const sourceNew = source
       .replace(/boilerplate/g, dashify(answers.projectName))
