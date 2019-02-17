@@ -385,10 +385,7 @@ const addExtras = async deployMode => {
   await fs.remove(dir)
 }
 
-const createRootEnvFile = async answers => {
-  const content = `COMPOSE_PROJECT_NAME=${toSnakeCase(answers.projectName)}\n`
-  await fs.writeFile(path.join(basedir, '.env'), content)
-}
+const createRootEnvFile = async answers => {}
 
 const run = async () => {
   try {
