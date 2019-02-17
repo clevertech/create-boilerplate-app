@@ -16,6 +16,9 @@ const main = async function(answers) {
       pjson.apiDependencies,
       dbConfig.deps
     )
+    pjson.betterScripts = Object.assign({}, pjson.betterScripts, {
+      db: dbConfig.cmd
+    })
   }
   await packageJson(path, pjson)
   return answers

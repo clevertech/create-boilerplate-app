@@ -71,4 +71,52 @@ describe('configure API package.json', async () => {
     )
     expect(answers).toEqual(expect.objectContaining(fakeAnswers))
   })
+
+  it('should setup db client command for mysql', async () => {
+    fakeAnswers.stack.prompt.dbEngine = 'mysql'
+    const answers = await subject(fakeAnswers)
+    expect(packageJson).toHaveBeenNthCalledWith(
+      1,
+      expect.stringMatching(/package.json/)
+    )
+    expect(packageJson).toHaveBeenNthCalledWith(
+      2,
+      expect.stringMatching(/package.json/),
+      expect.objectContaining({
+        betterScripts: { db: getDatabaseConfig('mysql').cmd }
+      })
+    )
+    expect(packageJson).not.toHaveBeenNthCalledWith(
+      2,
+      expect.stringMatching(/package.json/),
+      expect.objectContaining({
+        betterScripts: { db: getDatabaseConfig('postgres').cmd }
+      })
+    )
+    expect(answers).toEqual(expect.objectContaining(fakeAnswers))
+  })
+
+  it('should setup db client command for postgres', async () => {
+    fakeAnswers.stack.prompt.dbEngine = 'postgres'
+    const answers = await subject(fakeAnswers)
+    expect(packageJson).toHaveBeenNthCalledWith(
+      1,
+      expect.stringMatching(/package.json/)
+    )
+    expect(packageJson).toHaveBeenNthCalledWith(
+      2,
+      expect.stringMatching(/package.json/),
+      expect.objectContaining({
+        betterScripts: { db: getDatabaseConfig('postgres').cmd }
+      })
+    )
+    expect(packageJson).not.toHaveBeenNthCalledWith(
+      2,
+      expect.stringMatching(/package.json/),
+      expect.objectContaining({
+        betterScripts: { db: getDatabaseConfig('mysql').cmd }
+      })
+    )
+    expect(answers).toEqual(expect.objectContaining(fakeAnswers))
+  })
 })

@@ -2,6 +2,7 @@ import configurePackageJson from './configurePackageJson'
 import configurePrettierConfig from './configurePrettierConfig'
 
 const main = async function(answers) {
+  answers = Object.assign({}, { base: {} }, answers)
   answers = await configurePackageJson(answers)
   answers = await configurePrettierConfig(answers)
   return answers
