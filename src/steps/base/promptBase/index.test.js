@@ -1,6 +1,8 @@
 import inquirer from 'inquirer'
 import getDefaultAnswers from '../../../utils/getDefaultAnswers'
+
 jest.mock('inquirer')
+inquirer.prompt.mockImplementation(() => ({}))
 
 import subject from './'
 

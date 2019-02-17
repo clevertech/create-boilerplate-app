@@ -8,7 +8,7 @@ describe('package.json utility', () => {
   afterEach(jest.clearAllMocks)
   it('does nothing with no params', async () => {
     const result = await subject()
-    expect().toEqual(undefined)
+    expect(result).toBe(undefined)
   })
   it("retrieve's package.json file with one param", async () => {
     const result = await subject('package.json')

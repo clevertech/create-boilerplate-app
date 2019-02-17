@@ -2,8 +2,9 @@ import configureDockerCompose from './configureDockerCompose'
 import configurePackageJson from './configurePackageJson'
 
 const main = async function(answers) {
-  await configureDockerCompose(answers)
-  await configurePackageJson(answers)
+  answers = await configureDockerCompose(answers)
+  answers = await configurePackageJson(answers)
+  return answers
 }
 
 export default main

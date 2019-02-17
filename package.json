@@ -21,12 +21,13 @@
     ]
   },
   "dependencies": {
-    "chalk": "^2.3.0",
+    "chalk": "^2.4.2",
     "dashify": "^2.0.0",
     "fs-extra": "^7.0.1",
     "inquirer": "^6.2.2",
     "just-snake-case": "^1.0.0",
     "nanoid": "^2.0.1",
+    "ramda": "^0.26.1",
     "uppercamelcase": "^3.0.0",
     "yamljs": "^0.3.0"
   },

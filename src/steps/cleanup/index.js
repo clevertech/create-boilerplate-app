@@ -4,10 +4,11 @@ import installYarnDeps from './installYarnDeps'
 import initialCommit from './initialCommit'
 
 const run = async function(answers) {
-  await deleteGitDir(answers)
-  await initGitDir(answers)
-  await installYarnDeps(answers)
-  await initialCommit(answers)
+  answers = await deleteGitDir(answers)
+  answers = await initGitDir(answers)
+  answers = await installYarnDeps(answers)
+  answers = await initialCommit(answers)
+  return answers
 }
 
 export default run

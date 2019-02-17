@@ -3,8 +3,8 @@ import configurePackageJson from './configurePackageJson'
 
 import subject from './'
 
-jest.mock('./configureDockerCompose')
-jest.mock('./configurePackageJson')
+jest.mock('./configureDockerCompose', () => jest.fn(answers => answers))
+jest.mock('./configurePackageJson', () => jest.fn(answers => answers))
 
 const fakeAnswers = { test: 'asdf' }
 describe('Stack: root folder configuration', async () => {

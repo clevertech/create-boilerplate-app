@@ -6,7 +6,7 @@ jest.mock('inquirer')
 inquirer.prompt.mockImplementation(() => ({}))
 
 const fakeAnswers = { cat: 2 }
-describe('Redux-Express stack prompt', () => {
+describe('Redux-Express stack promptAdmin', async () => {
   it('returns new answers', async () => {
     const newAnswers = await subject(fakeAnswers)
     expect(newAnswers).toEqual(expect.objectContaining(fakeAnswers))
