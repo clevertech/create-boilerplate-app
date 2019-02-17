@@ -1,3 +1,3 @@
-describe('Cleanup for Extra Employee Step', () => {
-  test.todo('removes leftover files from employee configuration')
+describe('Clone down base boilerplate code', () => {
+  test.todo('pulls down the public boilerplate repo')
 })
