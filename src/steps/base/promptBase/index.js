@@ -24,56 +24,6 @@ const prompt = async function(answers) {
       default: answers.dirName
     },
     {
-      name: 'enableBrowse',
-      type: 'confirm',
-      message:
-        'Do you want to enable browse shortcuts for dev, stage, prod, github, and sumologic?',
-      default: true
-    },
-    {
-      name: 'devApiUrl',
-      type: 'string',
-      message: 'Dev API Url? (can be changed in package.json later)',
-      default: '',
-      when: answers => answers.enableBrowse
-    },
-    {
-      name: 'devFrontendUrl',
-      type: 'string',
-      default: '',
-      message: 'Dev Frontend Url? (can be changed in package.json later)',
-      when: answers => answers.enableBrowse
-    },
-    {
-      name: 'stageApiUrl',
-      type: 'string',
-      message: 'Stage API Url? (can be changed in package.json later)',
-      default: '',
-      when: answers => answers.enableBrowse
-    },
-    {
-      name: 'stageFrontendUrl',
-      type: 'string',
-      message: 'Stage Frontend Url? (can be changed in package.json later)',
-      default: '',
-      when: answers => answers.enableBrowse
-    },
-    {
-      name: 'prodApiUrl',
-      type: 'string',
-      message: 'Production API Url? (can be changed in package.json later)',
-      default: '',
-      when: answers => answers.enableBrowse
-    },
-    {
-      name: 'prodFrontendUrl',
-      type: 'string',
-      message:
-        'Production Frontend Url? (can be changed in package.json later)',
-      default: '',
-      when: answers => answers.enableBrowse
-    },
-    {
       name: 'enableRemoteRepo',
       type: 'confirm',
       message: 'Do you want to use a remote repository?',
@@ -104,7 +54,8 @@ const prompt = async function(answers) {
       type: 'list',
       message: 'What is the deploy mode?',
       choices: ['k8s', 'ecs'],
-      default: 'k8s'
+      default: 'k8s',
+      when: answers => answers.employee
     },
     {
       name: 'admin',

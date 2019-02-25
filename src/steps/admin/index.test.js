@@ -1,8 +1,8 @@
-import generateHelm from './generateHelm'
+import generateHelm from './configureHelm'
 
 import subject from './'
 
-jest.mock('./generateHelm', () => jest.fn(answers => answers))
+jest.mock('./configureHelm', () => jest.fn(answers => answers))
 
 const fakeAnswers = { admin: true }
 const fakeAnswersNotAdmin = {}

@@ -7,8 +7,9 @@ const fakeAnswers = { a: 123 }
 describe('move env file', () => {
   it('moves example env into place', async () => {
     const answers = await subject(fakeAnswers)
+    expect(answers).toEqual(expect.objectContaining(fakeAnswers))
     expect(exec).toHaveBeenCalledWith(
-      expect.stringMatching('mv frontend/.env.example frontend/.env')
+      expect.stringMatching('mv src/frontend/.env.example src/frontend/.env')
     )
   })
 })

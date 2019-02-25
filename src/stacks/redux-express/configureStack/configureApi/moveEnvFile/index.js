@@ -1,9 +1,8 @@
-export const run = async function(answers) {
-  //   // copy to .env
-  //   await fs.copy(
-  //     path.join(basedir, 'api/.env.example'),
-  //     path.join(basedir, 'api/.env')
-  //   )
-  // }
+import exec from '../../../../../utils/exec'
+
+const run = async function(answers) {
+  await exec('mv src/api/.env.example src/api/.env')
   return answers
 }
+
+export default run

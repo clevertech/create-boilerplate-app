@@ -1,7 +1,7 @@
 import subject from './'
-import fs from 'fs'
+import fs from 'fs-extra'
 
-jest.mock('fs')
+jest.mock('fs-extra')
 jest.mock('package.json', () => ({ rootJson: true }), { virtual: true })
 
 describe('package.json utility', () => {
@@ -19,7 +19,7 @@ describe('package.json utility', () => {
     expect(result.rootJson).toEqual(false)
     expect(fs.writeFile).toHaveBeenCalledWith(
       'package.json',
-      expect.stringMatching(/\"rootJson\": false/)
+      expect.stringMatching(/"rootJson": false/)
     )
   })
 })

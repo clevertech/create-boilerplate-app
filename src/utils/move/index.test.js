@@ -10,10 +10,10 @@ describe('Move util', () => {
   })
   it('Moves the contents of a folder into the current working directory', async () => {
     subject('asdf')
-    expect(exec).toHaveBeenCalledWith('mv ./asdf/.* ./')
+    expect(exec).toHaveBeenCalledWith('mv ./asdf/{.,}* ./')
   })
   it('supports slashes', async () => {
     subject('asdf/asdf')
-    expect(exec).toHaveBeenCalledWith('mv ./asdf/asdf/.* ./')
+    expect(exec).toHaveBeenCalledWith('mv ./asdf/asdf/{.,}* ./')
   })
 })

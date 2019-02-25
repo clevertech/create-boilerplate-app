@@ -1,18 +1,17 @@
-import nanoid from 'nanoid'
-import { getDatabaseConfig } from '../../../../../utils/databases'
 import envFile from '../../../../../utils/envFile'
+import path from 'path'
 
 const main = async function(answers) {
-  answers.stack.api.dbPassword = nanoid()
   const envPath = path.join(answers.dirName, 'api/.env.example')
   const changes = {
-    DB_DATABASE: answers.base.prompt.projectSlug + '_local',
-    DB_USER: answers.base.prompt.projectSlug,
-    DB_PASSWORD: answers.stack.api.dbPassword,
-    DB_ENGINE: answers.stack.api.dbEngine,
-    DB_PORT: getDatabaseConfig(answers.stack.api.dbEngine).port,
-    HEALTH_CHECK_SECRET: nanoid(),
-    SESSION_SECRET: nanoid()
+    DB_ENGINE: answers.stack.prompt.dbEngine,
+    DB_HOST: 'db',
+    DB_USER: answers.stack.prompt.dbUser,
+    DB_PORT: answers.stack.prompt.dbPort,
+    DB_PASSWORD: answers.stack.prompt.dbPass,
+    DB_DATABASE: answers.stack.prompt.dbName,
+    HEALTH_CHECK_SECRET: answers.stack.prompt.healthCheckSecret,
+    SESSION_SECRET: answers.stack.prompt.sessionSecret
   }
   envFile(envPath, changes)
 

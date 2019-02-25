@@ -1,6 +1,5 @@
-import generateHelm from './generateHelm'
+import generateHelm from './configureHelm'
 import adminSuffix from './adminSuffix'
-import chalk from 'chalk'
 
 const run = async function(answers) {
   if (!answers.admin) return answers

@@ -1,7 +1,6 @@
 import configurePackageJson from './configurePackageJson'
 import configurePrettierConfig from './configurePrettierConfig'
 import configureDockerRun from './configureDockerRun'
-import configureDockerCompose from './configureDockerCompose'
 import configureEnvFile from './configureEnvFile'
 
 const main = async function(answers) {
@@ -9,7 +8,6 @@ const main = async function(answers) {
   answers = await configurePackageJson(answers)
   answers = await configurePrettierConfig(answers)
   answers = await configureDockerRun(answers)
-  answers = await configureDockerCompose(answers)
   answers = await configureEnvFile(answers)
   return answers
 }

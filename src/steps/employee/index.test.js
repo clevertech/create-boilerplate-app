@@ -10,9 +10,16 @@ jest.mock('./moveExtra', () => jest.fn(answers => answers))
 jest.mock('./configureExtra', () => jest.fn(answers => answers))
 jest.mock('./cleanupExtra', () => jest.fn(answers => answers))
 
-const fakeAnswers = { test: 123123 }
+let fakeAnswers
 describe('Employee-specific configuration', () => {
+  beforeEach(() => (fakeAnswers = { base: { prompt: { employee: true } } }))
   afterEach(jest.clearAllMocks)
+  it("does nothing if we're not an employee", async () => {
+    fakeAnswers.base.prompt.employee = false
+    const answers = await subject(fakeAnswers)
+    expect(answers).toEqual(expect.objectContaining(fakeAnswers))
+    expect(cloneExtra).not.toHaveBeenCalled()
+  })
 
   // moveExtra()
   it('moves select boilerplate-extra files into place', async () => {

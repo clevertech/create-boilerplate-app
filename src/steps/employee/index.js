@@ -4,6 +4,7 @@ import configureExtra from './configureExtra'
 import cleanupExtra from './cleanupExtra'
 
 const run = async function(answers) {
+  if (!answers.base.prompt.employee) return answers
   answers = await cloneExtra(answers)
   answers = await moveExtra(answers)
   answers = await configureExtra(answers)
