@@ -1,11 +1,12 @@
-import dockerRun from '../../../../utils/dockerRun'
+import replaceStringInFile from '../../../../utils/replaceStringInFile'
 import subject from './'
 
-jest.mock('../../../../utils/dockerRun')
+jest.mock('../../../../utils/replaceStringInFile')
 const fakeAnswers = {
   base: {
     prompt: {
-      projectTitle: 'HappyCats'
+      projectTitle: 'HappyCats',
+      projectSlug: 'happy-cats'
     }
   },
   stack: {
@@ -17,9 +18,13 @@ const fakeAnswers = {
 }
 describe('configure base docker/run', async () => {
   afterEach(jest.clearAllMocks)
-  // it('writes name and description', async () => {
-  //   const answers = await subject(fakeAnswers)
-  //   expect(answers).toEqual(expect.objectContaining(fakeAnswers))
-  // })
-  test.todo('writes name and description')
+  it('calls the docker/run utility', async () => {
+    const answers = await subject(fakeAnswers)
+    expect(answers).toEqual(expect.objectContaining(fakeAnswers))
+    expect(replaceStringInFile).toHaveBeenCalledWith(
+      'boilerplate',
+      'docker/run',
+      expect.any(String)
+    )
+  })
 })
