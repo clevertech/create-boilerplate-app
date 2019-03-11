@@ -1,7 +1,7 @@
-import dockerCompose from '../../../../utils/dockerCompose'
+import yaml from '../../../../utils/yaml'
 import { databases } from '../../../../utils/databases'
 import subject from './'
-jest.mock('../../../../utils/dockerCompose', () => jest.fn(answers => answers))
+jest.mock('../../../../utils/yaml', () => jest.fn(answers => answers))
 
 const fakeAnswers = {
   base: {
@@ -27,7 +27,7 @@ describe('redux-express stack docker-compose configuration', () => {
   afterEach(jest.clearAllMocks)
   it('configures database environment variables', async () => {
     const answers = await subject(fakeAnswers)
-    expect(dockerCompose).toHaveBeenCalledWith(
+    expect(yaml).toHaveBeenCalledWith(
       expect.stringMatching(/.*docker-compose\.yml/),
       expect.objectContaining({
         services: expect.objectContaining({
@@ -46,7 +46,7 @@ describe('redux-express stack docker-compose configuration', () => {
   it('configures database port', async () => {
     const answers = await subject(fakeAnswers)
     const databaseConfig = databases[fakeAnswers.stack.prompt.dbEngine]
-    expect(dockerCompose).toHaveBeenCalledWith(
+    expect(yaml).toHaveBeenCalledWith(
       expect.stringMatching(/.*docker-compose\.yml/),
       expect.objectContaining({
         services: expect.objectContaining({
@@ -62,7 +62,7 @@ describe('redux-express stack docker-compose configuration', () => {
   it('configures database image', async () => {
     const answers = await subject(fakeAnswers)
     const databaseConfig = databases[fakeAnswers.stack.prompt.dbEngine]
-    expect(dockerCompose).toHaveBeenCalledWith(
+    expect(yaml).toHaveBeenCalledWith(
       expect.stringMatching(/.*docker-compose\.yml/),
       expect.objectContaining({
         services: expect.objectContaining({

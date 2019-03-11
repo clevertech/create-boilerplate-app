@@ -1,8 +1,8 @@
 import { databases } from '../../../../utils/databases'
-import dockerCompose from '../../../../utils/dockerCompose'
+import yaml from '../../../../utils/yaml'
 const main = async function(answers) {
   const databaseConfig = databases[answers.stack.prompt.dbEngine]
-  dockerCompose(answers.baseDir + 'docker-compose.yml', {
+  yaml(answers.baseDir + 'docker-compose.yml', {
     services: {
       db: {
         image: databaseConfig.dockerComposeImage,
