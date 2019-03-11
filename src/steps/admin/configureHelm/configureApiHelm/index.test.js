@@ -1,7 +1,7 @@
 import subject from './'
 import yaml from '../../../../utils/yaml'
 
-jest.mock('../../../../utils/replaceStringInFile')
+jest.mock('../../../../utils/yaml')
 const fakeSlug = 'happy-cats-two'
 const fakeAnswers = { base: { prompt: { admin: true, projectSlug: fakeSlug } } }
 describe('Generate API Admin Helm script', () => {
