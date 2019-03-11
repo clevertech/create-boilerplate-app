@@ -1,6 +1,7 @@
 import inquirer from 'inquirer'
+import { pathOr } from 'ramda'
 const run = async function(answers) {
-  if (!answers.base.prompt.admin) return
+  if (!pathOr(false, ['base', 'prompt', 'admin'], answers)) return answers
   const results = await inquirer.prompt([
     {
       name: 'dbHost',
