@@ -1,4 +1,4 @@
-import generateHelm from './configureHelm'
+import configureHelm from './configureHelm'
 
 import subject from './'
 
@@ -11,9 +11,23 @@ describe('Configuration cleanup', async () => {
     let answers = await subject(fakeAnswersNotAdmin)
     expect(answers).toEqual(expect.objectContaining(fakeAnswersNotAdmin))
   })
+  it('moves helm files', async () => {
+    let answers = await subject(fakeAnswers)
+    expect(configureHelm).toHaveBeenCalledWith(
+      expect.objectContaining(fakeAnswers)
+    )
+    expect(answers).toEqual(expect.objectContaining(fakeAnswers))
+  })
   it('generates helm files', async () => {
     let answers = await subject(fakeAnswers)
-    expect(generateHelm).toHaveBeenCalledWith(
+    expect(configureHelm).toHaveBeenCalledWith(
+      expect.objectContaining(fakeAnswers)
+    )
+    expect(answers).toEqual(expect.objectContaining(fakeAnswers))
+  })
+  it('generates helm files', async () => {
+    let answers = await subject(fakeAnswers)
+    expect(configureHelm).toHaveBeenCalledWith(
       expect.objectContaining(fakeAnswers)
     )
     expect(answers).toEqual(expect.objectContaining(fakeAnswers))
