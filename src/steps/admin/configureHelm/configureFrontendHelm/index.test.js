@@ -10,11 +10,10 @@ const fakeAnswers = { base: { prompt: { admin: true, projectSlug: fakeSlug } } }
 describe('Generate Frontend Admin Helm script', () => {
   afterEach(jest.clearAllMocks)
   it('generate random subdomain', async () => {
-    // const answers = await subject(fakeAnswers)
+    const answers = await subject(fakeAnswers)
     expect(setSubdomain).toHaveBeenCalledWith(fakeSlug)
-    // expect(answers).toEqual(expect.objectContaining(fakeAnswers))
+    expect(answers).toEqual(expect.objectContaining(fakeSlug))
   })
-  test.todo('generates frontend helm')
   // const generateHelmFrontend = async (answers, randomValue) => {
   //   const helmFile = path.join(__dirname, 'helm/frontend.yml')
   //   const helmFileSource = await fs.readFile(helmFile, 'utf8')
