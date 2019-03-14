@@ -1,5 +1,5 @@
 import generate from 'nanoid/generate'
-const run = async function(length) {
+const run = function(length) {
   return generate(
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
     length
