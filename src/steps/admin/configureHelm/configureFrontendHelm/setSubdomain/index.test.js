@@ -10,7 +10,6 @@ describe('Generate Frontend Admin Helm script', () => {
   afterEach(jest.clearAllMocks)
   it('configures subdomain', async () => {
     const answers = await subject(fakeAnswers)
-    console.log(answers)
     expect(replaceStringInFile).toHaveBeenCalledWith(
       __dirname + '/../../../../../helm/frontend.yml',
       'boilerplate-dev-randomvalue',
