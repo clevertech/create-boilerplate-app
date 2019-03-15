@@ -3,11 +3,11 @@ import yaml from '../../../../utils/yaml'
 
 jest.mock('../../../../utils/yaml')
 jest.mock('./setImageRepository/index', () => jest.fn(answers => answers))
+jest.mock('./setSubdomain/index', () => jest.fn(answers => answers))
 
 const fakeSlug = 'happy-cats-two'
 const fakeAnswers = { base: { prompt: { admin: true, projectSlug: fakeSlug } } }
 describe('Generate API Admin Helm script', () => {
-  afterEach(jest.clearAllMocks)
   afterEach(jest.clearAllMocks)
   it('sets helm deployment image repository', async () => {
     const answers = await subject(fakeAnswers)
@@ -16,29 +16,9 @@ describe('Generate API Admin Helm script', () => {
   })
   it('sets boilerplate in subdomain', async () => {
     const answers = await subject(fakeAnswers)
-    expect(yaml).toHaveBeenCalledWith(
-      expect.stringMatching(/helm-api-development.yml/),
-      expect.objectContaining({
-        helm: expect.objectContaining({
-          ingress: expect.objectContaining({
-            hosts: expect.arrayContaining([
-              expect.objectContaining({
-                rules: expect.arrayContaining([
-                  expect.objectContaining({
-                    subdomain: expect.stringMatching(
-                      new RegExp(fakeAnswers.base.prompt.projectSlug)
-                    )
-                  })
-                ])
-              })
-            ])
-          })
-        })
-      })
-    )
+    expect(setSubdomain).toHaveBeenCalledWith(fakeAnswers)
     expect(answers).toEqual(expect.objectContaining(fakeAnswers))
   })
-
   it('sets randomValue in subdomain', async () => {
     const answers = await subject(fakeAnswers)
     expect(yaml).toHaveBeenCalledWith(

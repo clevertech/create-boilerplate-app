@@ -1,15 +1,11 @@
 import { pathOr } from 'ramda'
 import setImageRepository from './setImageRepository/index'
+import setSubdomain from './setSubdomain/index'
 
 const run = async function(answers) {
   if (!pathOr(false, ['base', 'prompt', 'admin'], answers)) return answers
-  // 1. set image repository
   answers = await setImageRepository(answers)
-
-  // 2. set subdomain
-  helm.ingress.hosts[0].rules[0].subdomain = helm.ingress.hosts[0].rules[0].subdomain
-    .replace(/boilerplate/g, dashify(answers.projectName))
-    .replace(/randomvalue/g, randomValue)
+  answers = await setSubdomain(answers)
   // 3. set redis info
   const redisInfo = {
     helm: {
