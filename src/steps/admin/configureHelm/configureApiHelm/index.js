@@ -1,12 +1,11 @@
 import { pathOr } from 'ramda'
+import setImageRepository from './setImageRepository/index'
 
 const run = async function(answers) {
   if (!pathOr(false, ['base', 'prompt', 'admin'], answers)) return answers
   // 1. set image repository
-  helm.deployment.image.repository = helm.deployment.image.repository.replace(
-    /boilerplate/g,
-    dashify(answers.projectName)
-  )
+  answers = await setImageRepository(answers)
+
   // 2. set subdomain
   helm.ingress.hosts[0].rules[0].subdomain = helm.ingress.hosts[0].rules[0].subdomain
     .replace(/boilerplate/g, dashify(answers.projectName))

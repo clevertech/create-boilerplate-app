@@ -2,29 +2,18 @@ import subject from './'
 import yaml from '../../../../utils/yaml'
 
 jest.mock('../../../../utils/yaml')
+jest.mock('./setImageRepository/index', () => jest.fn(answers => answers))
+
 const fakeSlug = 'happy-cats-two'
 const fakeAnswers = { base: { prompt: { admin: true, projectSlug: fakeSlug } } }
 describe('Generate API Admin Helm script', () => {
   afterEach(jest.clearAllMocks)
+  afterEach(jest.clearAllMocks)
   it('sets helm deployment image repository', async () => {
     const answers = await subject(fakeAnswers)
-    expect(yaml).toHaveBeenCalledWith(
-      expect.stringMatching(/helm-api-development.yml/),
-      expect.objectContaining({
-        helm: expect.objectContaining({
-          deployment: expect.objectContaining({
-            image: expect.objectContaining({
-              repository: expect.stringMatching(
-                new RegExp(fakeAnswers.base.prompt.projectSlug)
-              )
-            })
-          })
-        })
-      })
-    )
+    expect(setImageRepository).toHaveBeenCalledWith(fakeAnswers)
     expect(answers).toEqual(expect.objectContaining(fakeAnswers))
   })
-
   it('sets boilerplate in subdomain', async () => {
     const answers = await subject(fakeAnswers)
     expect(yaml).toHaveBeenCalledWith(
