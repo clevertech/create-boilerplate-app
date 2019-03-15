@@ -1,11 +1,14 @@
 import { pathOr } from 'ramda'
 import setImageRepository from './setImageRepository/index'
 import setSubdomain from './setSubdomain/index'
+import setRedisInfo from './setRedisInfo/index'
 
 const run = async function(answers) {
   if (!pathOr(false, ['base', 'prompt', 'admin'], answers)) return answers
   answers = await setImageRepository(answers)
   answers = await setSubdomain(answers)
+  answers = await setRedisInfo(answers)
+
   // 3. set redis info
   const redisInfo = {
     helm: {

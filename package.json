@@ -25,6 +25,7 @@
     "dashify": "^2.0.0",
     "fs-extra": "^7.0.1",
     "inquirer": "^6.2.2",
+    "js-yaml": "^3.12.2",
     "just-snake-case": "^1.0.0",
     "nanoid": "^2.0.1",
     "ramda": "^0.26.1",
