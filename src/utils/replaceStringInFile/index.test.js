@@ -1,36 +1,58 @@
-import fs from 'fs'
-
+import fs from 'fs-extra'
 import subject from './'
 
-const mockDockerRun = 'someStuff=boilerplate'
-jest.mock('fs')
-fs.readFile.mockImplementation(file =>
-  file === 'docker/run' ? mockDockerRun : undefined
-)
-jest.mock('docker/run', () => mockDockerRun, { virtual: true })
+const replaceMe = 'replacementstring'
+const replaceWithMe = 'NEWSTRING'
+const mockPath = 'mockpath'
+const mockFile =
+  'This is a file with a ((.*--/\\' +
+  replaceMe +
+  '\\//-)*.init. I want both ' +
+  replaceMe +
+  ' entries to be replaced.'
+jest.mock('fs-extra')
 
-const fakeProjectSlug = 'a-project-slug'
+fs.readFile.mockImplementation(async path => {
+  if (path === mockPath) return mockFile
+})
+fs.writeFile.mockImplementation(async () => mockFile)
 
-describe('docker/run utility', () => {
+describe('replaceStringInFile', () => {
   afterEach(jest.clearAllMocks)
 
-  it('does nothing with no params', async () => {
-    const result = await subject()
+  it('does nothing with out first param: string to replace', async () => {
+    const result = await subject(undefined, mockPath, replaceWithMe)
     expect(result).toBe(undefined)
+    expect(fs.readFile).not.toHaveBeenCalled()
+    expect(fs.writeFile).not.toHaveBeenCalled()
   })
 
-  it("retrieve's docker/run file with path param", async () => {
-    const result = await subject('docker/run')
-    expect(result).toEqual(mockDockerRun)
+  it('does nothing with out second param: filepath', async () => {
+    const result = await subject(replaceMe, undefined, replaceWithMe)
+    expect(result).toBe(undefined)
+    expect(fs.readFile).not.toHaveBeenCalled()
+    expect(fs.writeFile).not.toHaveBeenCalled()
   })
 
-  it('updates compose project name with second param', async () => {
-    const result = await subject('docker/run', fakeProjectSlug)
-    const matchString = new RegExp('someStuff=' + fakeProjectSlug)
+  it('does nothing with out third param: replacement value', async () => {
+    const result = await subject(replaceMe, mockPath, undefined)
+    expect(result).toBe(undefined)
+    expect(fs.readFile).not.toHaveBeenCalled()
+    expect(fs.writeFile).not.toHaveBeenCalled()
+  })
+
+  it('replaces string in file given all parameters', async () => {
+    const result = await subject(replaceMe, mockPath, replaceWithMe)
+    const goodMatchString = new RegExp(replaceWithMe, 'g')
+    const badMatchString = new RegExp(replaceMe, 'g')
     expect(fs.writeFile).toHaveBeenCalledWith(
-      'docker/run',
-      expect.stringMatching(matchString)
+      mockPath,
+      expect.stringMatching(goodMatchString)
     )
-    expect(result).toEqual(expect.stringMatching(matchString))
+    expect(fs.writeFile).not.toHaveBeenCalledWith(
+      mockPath,
+      expect.stringMatching(badMatchString)
+    )
+    expect(result).toEqual(expect.stringMatching(goodMatchString))
   })
 })
