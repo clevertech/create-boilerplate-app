@@ -1,7 +1,7 @@
 import yaml from '../../../../../utils/yaml'
 import generateRandom from '../../../../../utils/generateRandom'
 
-const filePath = __dirname + '/../../../../../helm/frontend.yml'
+const filePath = __dirname + './helm/frontend.yml'
 
 const run = async function(answers) {
   const fileContents = await yaml(filePath)
