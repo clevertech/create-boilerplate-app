@@ -1,11 +1,19 @@
-import replaceStringInFile from '../../../../../utils/replaceStringInFile'
+import yaml from '../../../../../utils/yaml'
+import generateRandom from '../../../../../utils/generateRandom'
+
+const filePath = __dirname + '/../../../../../helm/frontend.yml'
 
 const run = async function(answers) {
-  await replaceStringInFile(
-    __dirname + '/../../../../../helm/frontend.yml',
-    'boilerplate-dev-randomvalue',
-    answers.base.prompt.projectSlug
-  )
+  const fileContents = await yaml(filePath)
+  const slug = answers.base.prompt.projectSlug
+  const oldSubdomain = fileContents.ingress.hosts[0].rules[0].subdomain
+
+  fileContents.ingress.hosts[0].rules[0].subdomain = oldSubdomain
+    .replace(/boilerplate/g, slug)
+    .replace(/randomvalue/g, generateRandom(8))
+
+  await yaml(filePath, fileContents)
+
   return answers
 }
 
