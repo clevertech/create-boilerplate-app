@@ -7,12 +7,10 @@ jest.mock('../../../../../utils/yaml', () => jest.fn(() => mockYaml))
 const fakeSlug = 'project_slug'
 const fakeAnswers = { base: { prompt: { admin: true, projectSlug: fakeSlug } } }
 
-describe('Admin ConfigureApiHelm: setDbInfo', () => {
+describe('Admin ConfigureApiHelm: setRedisInfo', () => {
   afterEach(jest.clearAllMocks)
-  it('configures database secrets', async () => {
+  it('configures redis secrets', async () => {
     const answers = await subject(fakeAnswers)
-    const dbPort = databases[answers.databaseEngine].port
-    const dbName = toSnakeCase(answers.projectName)
     expect(yaml).toHaveBeenCalledWith(
       expect.stringMatching(/helm-api-development.yml/),
       expect.objectContaining({
@@ -20,14 +18,11 @@ describe('Admin ConfigureApiHelm: setDbInfo', () => {
           secrets: expect.arrayContaining([
             expect.objectContaining({
               data: expect.objectContaining({
-                //     DB_ENGINE: answers.stack.databaseEngine,
-                //     DB_PORT: dbPort,
-                //     DB_DATABASE: dbName + '_development',
-                //     DB_POOL_MIN: 2,
-                //     DB_POOL_MAX: 10,
-                //     DB_HOST: answers.dbhost,
-                //     DB_USER: answers.dbuser,
-                //     DB_PASSWORD: answers.dbpassword,
+                //     REDIS_HOST: answers.redishost,
+                //     REDIS_PORT: '6379',
+                //     REDIS_PREFIX: dbName + '_development',
+                //     SESSION_SECRET: nanoid(),
+                //     HEALTH_CHECK_SECRET: nanoid()
               })
             })
           ])
@@ -36,7 +31,4 @@ describe('Admin ConfigureApiHelm: setDbInfo', () => {
     )
     expect(answers).toEqual(expect.objectContaining(fakeAnswers))
   })
-
-  test.todo('sets the db info correctly for postgres')
-  test.todo('sets the db info correctly for mysql')
 })
