@@ -1,6 +1,3 @@
-import inquirer from 'inquirer'
-
-import { REPO, NAME } from '.'
 import promptBase from './promptBase'
 import cloneBase from './cloneBase'
 import moveBase from './moveBase'
@@ -35,7 +32,6 @@ describe('Base Stack Configuration', async () => {
   })
   it('clones down boilerplate index repo', async () => {
     const answers = await subject(fakeAnswers)
-    expect(answers.base.BASE_REPO).not.toBe(undefined)
     expect(answers).toEqual(expect.objectContaining(fakeAnswers))
     expect(cloneBase).toHaveBeenCalledWith(expect.objectContaining(fakeAnswers))
   })
