@@ -10,7 +10,7 @@ fs.writeFile.mockImplementation((path, options, callback) =>
   callback(null, 'rootDocker: true')
 )
 
-describe('docker-compose utility', async () => {
+describe('yaml utility', async () => {
   afterEach(jest.clearAllMocks)
 
   it('does nothing with no params', async () => {

@@ -29,7 +29,7 @@
     "nanoid": "^2.0.1",
     "ramda": "^0.26.1",
     "uppercamelcase": "^3.0.0",
-    "yamljs": "^0.3.0"
+    "js-yaml": "latest"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",

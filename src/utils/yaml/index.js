@@ -1,4 +1,4 @@
-import yaml from 'yamljs'
+import yaml from 'js-yaml'
 import { readFile, writeFile } from 'fs'
 
 import { promisify } from 'util'
@@ -10,12 +10,12 @@ const main = async function(yamlFilePath, update) {
   if (!yamlFilePath) return
 
   const yamlFileSource = await asyncReadFile(yamlFilePath, 'utf8')
-  const yamlFileObj = yaml.parse(yamlFileSource)
+  const yamlFileObj = yaml.safeLoad(yamlFileSource)
 
   if (!update) return yamlFileObj // stop here if we're not updating the file
 
   const newYamlFileObj = Object.assign(yamlFileObj, update)
-  await asyncWriteFile(yamlFilePath, yaml.stringify(newYamlFileObj, 4, 2))
+  await asyncWriteFile(yamlFilePath, yaml.safeDump(newYamlFileObj, 4))
   return newYamlFileObj
 }
 
