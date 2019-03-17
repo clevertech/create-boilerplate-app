@@ -1,6 +1,6 @@
 import chalk from 'chalk'
 
-const run = async function() {
+const run = async function(answers) {
   const suffixString = `
   
          =========================== 
@@ -15,6 +15,7 @@ const run = async function() {
   
   `
   console.log(suffixString)
+  return answers
 }
 
 export default run

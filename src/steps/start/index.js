@@ -8,12 +8,12 @@ import getDefaultAnswers from '../../utils/getDefaultAnswers'
 
 const run = async function() {
   let answers = getDefaultAnswers()
-  answers.baseRunResults = await baseRun(answers)
-  answers.stackRunResults = await stackRun(answers)
-  answers.employeeRunResults = await employeeRun(answers)
-  answers.adminRunResults = await adminRun(answers)
-  answers.cleanupRunResults = await cleanupRun(answers)
-  answers.suffixRunResults = await suffixRun(answers)
+  answers = await baseRun(answers)
+  answers = await stackRun(answers)
+  answers = await employeeRun(answers)
+  answers = await adminRun(answers)
+  answers = await cleanupRun(answers)
+  answers = await suffixRun(answers)
   return answers
 }
 

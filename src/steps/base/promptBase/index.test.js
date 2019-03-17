@@ -144,4 +144,12 @@ describe("Base-Stack Step's Prompt", () => {
       ])
     )
   })
+  it('saves answers', async () => {
+    const answers = await subject(fakeAnswers)
+    expect(answers).toEqual(
+      expect.objectContaining({
+        base: expect.objectContaining({ prompt: expect.any(Object) })
+      })
+    )
+  })
 })
