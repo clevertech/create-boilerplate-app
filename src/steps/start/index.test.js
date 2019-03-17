@@ -15,33 +15,31 @@ jest.mock('../suffix', () => jest.fn(() => 6))
 
 import subject from './'
 
+process.argv[2] = 'purpleflowers'
 const fakeAnswers = getDefaultAnswers()
 describe('CBA Step: Start', () => {
-  beforeAll(() => {
-    process.argv[2] = 'purpleflowers'
-  })
   it('runs base setup script', async () => {
     await subject(fakeAnswers)
-    expect(base).toHaveBeenCalledWith(1)
+    expect(base).toHaveBeenCalledWith(fakeAnswers)
   })
   it('runs stack setup script', async () => {
     await subject(fakeAnswers)
-    expect(stack).toHaveBeenCalledWith(2)
+    expect(stack).toHaveBeenCalledWith(1)
   })
   it('runs employee configuration if employee', async () => {
     await subject(fakeAnswers)
-    expect(employee).toHaveBeenCalledWith(3)
+    expect(employee).toHaveBeenCalledWith(2)
   })
   it('runs admin configuration if employee and admin', async () => {
     await subject(fakeAnswers)
-    expect(admin).toHaveBeenCalledWith(4)
+    expect(admin).toHaveBeenCalledWith(3)
   })
   it('runs cleanup', async () => {
     await subject(fakeAnswers)
-    expect(cleanup).toHaveBeenCalledWith(5)
+    expect(cleanup).toHaveBeenCalledWith(4)
   })
   it('prints a suffix message', async () => {
     await subject(fakeAnswers)
-    expect(suffix).toHaveBeenCalledWith(6)
+    expect(suffix).toHaveBeenCalledWith(5)
   })
 })
