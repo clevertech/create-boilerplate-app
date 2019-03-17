@@ -1,5 +1,6 @@
 {
-  "boilerplateRepo": "https://github.com/chadfurman/boilerplate",
+  "boilerplateRepo": "https://github.com/clevertech/boilerplate",
+  "boilerplateExtrasRepo": "https://github.com/clevertech/boilerplate-extras",
   "databases": {
     "postgres": {
       "port": 5432,
@@ -29,5 +30,9 @@
       "dockerComposeImage": "mysql/mysql-server",
       "cmd": "mysql -h 127.0.0.1 -u $MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DATABASE"
     }
+  },
+  "stacks": {
+    "apollo-apollo": {},
+    "redux-express": {}
   }
 }
