@@ -14,8 +14,8 @@ const readmeMock = 'READMEMOCK'
 const readmeExtraMock = 'READMEEXTRAMOCK'
 
 fs.readFile = jest.fn(async path => {
-  if (path === 'README.md') return readmeMock
-  if (path === 'README-extra.md') return readmeExtraMock
+  if (/README\.md/.test(path)) return readmeMock
+  if (/README-extra\.md/.test(path)) return readmeExtraMock
 })
 
 describe('Readme configuration', () => {
