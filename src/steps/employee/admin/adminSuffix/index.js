@@ -1,4 +1,4 @@
-import chalk from 'chalk/types'
+import chalk from 'chalk'
 
 const run = async function(answers) {
   if (!answers || !answers.dirName) return answers
