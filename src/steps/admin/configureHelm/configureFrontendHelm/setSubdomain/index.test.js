@@ -21,7 +21,7 @@ jest.mock('../../../../../utils/generateRandom', () =>
   jest.fn(() => mockRandomString)
 )
 
-const filePath = __dirname + '/../../../../../helm/frontend.yml'
+const filePath = './helm/frontend.yml'
 const fakeSlug = 'project_slug'
 const fakeAnswers = { base: { prompt: { admin: true, projectSlug: fakeSlug } } }
 
