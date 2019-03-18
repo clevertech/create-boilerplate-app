@@ -1,7 +1,19 @@
 import subject from './'
 import yaml from '../../../../../utils/yaml'
 
-const mockYaml = {}
+const mockYaml = {
+  ingress: {
+    hosts: [
+      {
+        rules: [
+          {
+            subdomain: 'boilerplate_randomvalue'
+          }
+        ]
+      }
+    ]
+  }
+}
 jest.mock('../../../../../utils/yaml', () => jest.fn(() => mockYaml))
 
 const fakeSlug = 'project_slug'
@@ -12,22 +24,20 @@ describe('Admin ConfigureApiHelm: setSubdomain', () => {
   it('sets boilerplate in subdomain', async () => {
     const answers = await subject(fakeAnswers)
     expect(yaml).toHaveBeenCalledWith(
-      expect.stringMatching(/helm-api-development.yml/),
+      expect.stringMatching(/\.\/helm\/api\.yml/),
       expect.objectContaining({
-        helm: expect.objectContaining({
-          ingress: expect.objectContaining({
-            hosts: expect.arrayContaining([
-              expect.objectContaining({
-                rules: expect.arrayContaining([
-                  expect.objectContaining({
-                    subdomain: expect.stringMatching(
-                      new RegExp(fakeAnswers.base.prompt.projectSlug)
-                    )
-                  })
-                ])
-              })
-            ])
-          })
+        ingress: expect.objectContaining({
+          hosts: expect.arrayContaining([
+            expect.objectContaining({
+              rules: expect.arrayContaining([
+                expect.objectContaining({
+                  subdomain: expect.stringMatching(
+                    new RegExp(fakeAnswers.base.prompt.projectSlug)
+                  )
+                })
+              ])
+            })
+          ])
         })
       })
     )
@@ -37,22 +47,20 @@ describe('Admin ConfigureApiHelm: setSubdomain', () => {
   it('sets randomValue in subdomain', async () => {
     const answers = await subject(fakeAnswers)
     expect(yaml).toHaveBeenCalledWith(
-      expect.stringMatching(/helm-api-development.yml/),
+      expect.stringMatching(/\.\/helm\/api\.yml/),
       expect.objectContaining({
-        helm: expect.objectContaining({
-          ingress: expect.objectContaining({
-            hosts: expect.arrayContaining([
-              expect.objectContaining({
-                rules: expect.arrayContaining([
-                  expect.objectContaining({
-                    subdomain: expect.not.stringMatching(
-                      new RegExp('randomString')
-                    )
-                  })
-                ])
-              })
-            ])
-          })
+        ingress: expect.objectContaining({
+          hosts: expect.arrayContaining([
+            expect.objectContaining({
+              rules: expect.arrayContaining([
+                expect.objectContaining({
+                  subdomain: expect.not.stringMatching(
+                    new RegExp('randomString')
+                  )
+                })
+              ])
+            })
+          ])
         })
       })
     )
