@@ -5,7 +5,7 @@ jest.mock('../../../../utils/replaceStringInFile')
 const fakeSlug = 'project_slug'
 const fakeAnswers = { base: { prompt: { admin: true, projectSlug: fakeSlug } } }
 
-describe('SWrites project name to Makefiles', () => {
+describe('Writes project name to Makefiles', () => {
   afterEach(jest.clearAllMocks)
   it('configures api Makefile', async () => {
     const answers = await subject(fakeAnswers)
