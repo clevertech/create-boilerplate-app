@@ -1,7 +1,5 @@
 import subject from './'
-import path from 'path'
 import fs from 'fs-extra'
-import { Z_FIXED } from 'zlib'
 
 jest.mock('fs-extra')
 
@@ -20,13 +18,16 @@ fs.readFile = jest.fn(async path => {
   if (path === 'README-extra.md') return readmeExtraMock
 })
 
-describe('Extends readme', () => {
+describe('Readme configuration', () => {
   afterEach(jest.clearAllMocks)
-  it('Reading from directory', async () => {
+  it('Appends readme-extra to readme', async () => {
     const answers = await subject(fakeAnswers)
+    const matchString = new RegExp(readmeMock + '\n\n' + readmeExtraMock)
 
-    expect(fs.writeFile).toBeCalledWith('README.md+"\n\n"+README-extra.md')
-
+    expect(fs.writeFile).toBeCalledWith(
+      expect.any(String),
+      expect.stringMatching(matchString)
+    )
     expect(answers).toEqual(expect.objectContaining(fakeAnswers))
   })
 })
