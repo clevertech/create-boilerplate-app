@@ -4,21 +4,9 @@ import moveBuildspecs from './moveBuildspecs'
 
 import subject from './'
 
-jest.mock('./moveTerraform', () =>
-  jest.fn(answers => {
-    return answers
-  })
-)
-jest.mock('./moveMakefiles', () =>
-  jest.fn(answers => {
-    return answers
-  })
-)
-jest.mock('./moveBuildspecs', () =>
-  jest.fn(answers => {
-    return answers
-  })
-)
+jest.mock('./moveTerraform', () => jest.fn(async answers => answers))
+jest.mock('./moveMakefiles', () => jest.fn(async answers => answers))
+jest.mock('./moveBuildspecs', () => jest.fn(async answers => answers))
 
 const fakeAnswers = { asdf: 123 }
 describe('Move extra config', async () => {
