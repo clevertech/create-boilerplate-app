@@ -1,17 +1,26 @@
+import nanoid from 'nanoid'
+import yaml from '../../../../../utils/yaml'
+import { mergeDeepRight } from 'ramda'
+
+const filePath = './helm/api.yml'
+
 const run = async function(answers) {
+  const fileContents = await yaml(filePath)
+
+  const info = {
+    secrets: [
+      {
+        data: {
+          HEALTH_CHECK_SECRET: nanoid(),
+          SESSION_SECRET: nanoid()
+        }
+      }
+    ]
+  }
+
+  await yaml(filePath, mergeDeepRight(fileContents, info))
+
   return answers
-  // const secretInfo = {
-  //   helm: {
-  //     secrets: [
-  //       {
-  //         data: {
-  //           SESSION_SECRET: nanoid(),
-  //           HEALTH_CHECK_SECRET: nanoid()
-  //         }
-  //       }
-  //     ]
-  //   }
-  // }
 }
 
 export default run
