@@ -11,12 +11,12 @@ function mockHelmDeploymentImageRepoObject(repo) {
   }
 }
 
-jest.mock('../../../../../utils/yaml', () =>
+jest.mock('../../../../../../utils/yaml', () =>
   jest.fn(() => mockHelmDeploymentImageRepoObject('boilerplate'))
 )
 const fakeSlug = 'image-repository'
 const fakeAnswers = { base: { prompt: { admin: true, projectSlug: fakeSlug } } }
-const filePath = __dirname + '/../../../../../helm/frontend.yml'
+const filePath = './helm/frontend.yml'
 
 describe('Generate Frontend Admin Helm script', () => {
   afterEach(jest.clearAllMocks)
