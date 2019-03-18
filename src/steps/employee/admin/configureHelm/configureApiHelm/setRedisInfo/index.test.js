@@ -3,7 +3,7 @@ import yaml from '../../../../../../utils/yaml'
 import config from 'config'
 
 const mockYaml = {}
-jest.mock('../../../../../utils/yaml', () => jest.fn(() => mockYaml))
+jest.mock('../../../../../../utils/yaml', () => jest.fn(() => mockYaml))
 
 const mockSlug = 'project_slug'
 const mockRedisHost = 'mockredishost'

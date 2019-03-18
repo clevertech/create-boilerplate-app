@@ -17,7 +17,7 @@ const mockYaml = {
 jest.mock('../../../../../utils/yaml', () => jest.fn(() => mockYaml))
 
 const mockRandomString = 'someRandomString'
-jest.mock('../../../../../utils/generateRandom', () =>
+jest.mock('../../../../../../utils/generateRandom', () =>
   jest.fn(() => mockRandomString)
 )
 

@@ -4,7 +4,7 @@ import { databases } from '../../../../../../utils/databases'
 import { mergeDeepRight } from 'ramda'
 
 const mockYaml = {}
-jest.mock('../../../../../utils/yaml', () => jest.fn(() => mockYaml))
+jest.mock('../../../../../../utils/yaml', () => jest.fn(() => mockYaml))
 
 const mockSlug = 'project_slug'
 const mockDbEngine = 'mockengine'

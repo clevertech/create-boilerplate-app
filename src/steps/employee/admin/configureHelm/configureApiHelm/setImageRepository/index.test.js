@@ -8,7 +8,7 @@ const mockYaml = {
     }
   }
 }
-jest.mock('../../../../../utils/yaml', () => jest.fn(() => mockYaml))
+jest.mock('../../../../../../utils/yaml', () => jest.fn(() => mockYaml))
 
 const fakeSlug = 'project_slug'
 const fakeAnswers = { base: { prompt: { admin: true, projectSlug: fakeSlug } } }
