@@ -1,8 +1,8 @@
 import subject from './'
 import path from 'path'
 import fs from 'fs-extra'
+import { Z_FIXED } from 'zlib'
 
-jest.mock('path')
 jest.mock('fs-extra')
 
 const fakeSlug = 'project_slug'
@@ -12,23 +12,20 @@ const fakeAnswers = {
   base: { prompt: { admin: true, projectSlug: fakeSlug } }
 }
 
-const mockAnswerString = 'some-string-readme'
-path.resolve.mockReturnValueOnce(fakeDir)
-fs.readFile.mockReturnValueOnce('mockAnswerString')
+const readmeMock = 'READMEMOCK'
+const readmeExtraMock = 'READMEEXTRAMOCK'
+
+fs.readFile = jest.fn(async path => {
+  if (path === 'README.md') return readmeMock
+  if (path === 'README-extra.md') return readmeExtraMock
+})
 
 describe('Extends readme', () => {
   afterEach(jest.clearAllMocks)
   it('Reading from directory', async () => {
     const answers = await subject(fakeAnswers)
 
-    // trying to set path.join, but failing
-    expect(path.join).toEqual([
-      [fakeDir, 'README.md'],
-      ['boilerplate-extras', 'README-extra.md']
-    ])
-
-    // trying to assert at least 2nd param as a string, but failing as well
-    expect(fs.writeFile).toHaveBeenCalledWith(mockAnswerString)
+    expect(fs.writeFile).toBeCalledWith('README.md+"\n\n"+README-extra.md')
 
     expect(answers).toEqual(expect.objectContaining(fakeAnswers))
   })
