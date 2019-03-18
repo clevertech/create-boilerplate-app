@@ -9,8 +9,8 @@ import subject from './'
 jest.mock('../base', () => jest.fn(() => 1))
 jest.mock('../stack', () => jest.fn(() => 2))
 jest.mock('../employee', () => jest.fn(() => 3))
-jest.mock('../cleanup', () => jest.fn(() => 5))
-jest.mock('../suffix', () => jest.fn(() => 6))
+jest.mock('../cleanup', () => jest.fn(() => 4))
+jest.mock('../suffix', () => jest.fn(() => 5))
 
 process.argv[2] = 'purpleflowers'
 const fakeAnswers = getDefaultAnswers()
@@ -29,10 +29,10 @@ describe('CBA Step: Start', () => {
   })
   it('runs cleanup', async () => {
     await subject(fakeAnswers)
-    expect(cleanup).toHaveBeenCalledWith(4)
+    expect(cleanup).toHaveBeenCalledWith(3)
   })
   it('prints a suffix message', async () => {
     await subject(fakeAnswers)
-    expect(suffix).toHaveBeenCalledWith(5)
+    expect(suffix).toHaveBeenCalledWith(4)
   })
 })
