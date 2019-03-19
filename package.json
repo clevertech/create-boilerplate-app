@@ -12,7 +12,7 @@
   "author": "Alberto Gimeno <gimenete@gimenete.net>",
   "license": "MIT",
   "bin": {
-    "Boilerplate": "src/index.js"
+    "create-boilerplate-app": "src/index.js"
   },
   "lint-staged": {
     "*.{js,json,md}": [
