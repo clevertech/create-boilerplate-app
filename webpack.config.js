@@ -1,6 +1,9 @@
 var path = require('path')
 
 module.exports = {
+  resolve: {
+    modules: [__dirname, 'node_modules'],
+  },
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -13,7 +16,6 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
         use: {
           loader: 'babel-loader'
         }

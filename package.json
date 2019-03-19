@@ -7,7 +7,7 @@
     "test": "jest src/**/*.test.js",
     "start": "nodemon src/index.js",
     "precommit": "lint-staged",
-    "webpack": "webpack-cli --progress --profile --colors --display-error-details --mode development"
+    "webpack": "webpack-cli --progress --profile --colors --display-error-details --mode production"
   },
   "keywords": [],
   "author": "Alberto Gimeno <gimenete@gimenete.net>",
@@ -23,6 +23,8 @@
   },
   "dependencies": {
     "chalk": "^2.4.2",
+    "chownr": "^1.1.1",
+    "config": "^3.0.1",
     "dashify": "^2.0.0",
     "fs-extra": "^7.0.1",
     "inquirer": "^6.2.2",
