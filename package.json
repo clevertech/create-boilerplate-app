@@ -7,13 +7,13 @@
     "test": "jest src/**/*.test.js",
     "start": "nodemon src/index.js",
     "precommit": "lint-staged",
-    "webpack": "webpack-cli"
+    "webpack": "webpack-cli --progress --profile --colors --display-error-details --mode development"
   },
   "keywords": [],
   "author": "Alberto Gimeno <gimenete@gimenete.net>",
   "license": "MIT",
   "bin": {
-    "create-boilerplate-app": "src/index.js"
+    "create-boilerplate-app": "build/app.bundle.js"
   },
   "lint-staged": {
     "*.{js,json,md}": [
