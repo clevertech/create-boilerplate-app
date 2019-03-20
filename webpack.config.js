@@ -18,9 +18,13 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js)$/,
+        exclude: /node_modules/,
         use: {
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
         }
       }
     ]
@@ -35,7 +39,7 @@ module.exports = {
   },
   node: {
     fs: 'empty',
-    __dirname: true,
+    __dirname: false,
     __filename: true,
     child_process: 'empty',
     readline: 'empty'
