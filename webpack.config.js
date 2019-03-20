@@ -4,6 +4,9 @@ module.exports = {
   resolve: {
     modules: [__dirname, 'node_modules']
   },
+  performance: {
+    hints: false
+  },
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -21,6 +24,14 @@ module.exports = {
         }
       }
     ]
+  },
+  optimization: {
+    namedModules: true,
+    namedChunks: true,
+    nodeEnv: 'development',
+    flagIncludedChunks: false,
+    occurrenceOrder: false,
+    sideEffects: false
   },
   node: {
     fs: 'empty',
