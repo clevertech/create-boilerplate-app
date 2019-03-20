@@ -2,7 +2,7 @@ var path = require('path')
 
 module.exports = {
   resolve: {
-    modules: [__dirname, 'node_modules'],
+    modules: [__dirname, 'node_modules']
   },
   entry: './src/index.js',
   output: {
@@ -26,8 +26,8 @@ module.exports = {
     fs: 'empty',
     __dirname: true,
     __filename: true,
-    config: true,
     child_process: 'empty',
     readline: 'empty'
-  }
+  },
+  target: 'node'
 }
