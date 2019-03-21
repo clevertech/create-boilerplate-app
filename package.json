@@ -32,7 +32,6 @@
     "js-yaml": "latest",
     "just-snake-case": "^1.0.0",
     "nanoid": "^2.0.1",
-    "node-config": "^0.0.2",
     "ramda": "^0.26.1",
     "uppercamelcase": "^3.0.0"
   },
