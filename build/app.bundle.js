@@ -10823,7 +10823,7 @@
       /***/ function(module, __webpack_exports__, __webpack_require__) {
         'use strict'
         eval(
-          '__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! path */ "path");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_0__);\n\n\nvar run = function run() {\n  var dirName = process.argv[2];\n  return {\n    dirName: dirName,\n    baseDir: path__WEBPACK_IMPORTED_MODULE_0___default.a.resolve(process.cwd(), dirName)\n  };\n};\n\n/* harmony default export */ __webpack_exports__["default"] = (run);\n\n//# sourceURL=webpack:///./src/utils/getDefaultAnswers/index.js?'
+          '__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! path */ "path");\n/* harmony import */ var path__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(path__WEBPACK_IMPORTED_MODULE_0__);\n\n\nvar run = function run() {\n  if (typeof process.argv[2] === \'undefined\') {\n    throw new Error("missing param");\n  }\n\n  var dirName = process.argv[2];\n  return {\n    dirName: dirName,\n    baseDir: path__WEBPACK_IMPORTED_MODULE_0___default.a.resolve(process.cwd(), dirName)\n  };\n};\n\n/* harmony default export */ __webpack_exports__["default"] = (run);\n\n//# sourceURL=webpack:///./src/utils/getDefaultAnswers/index.js?'
         )
 
         /***/
