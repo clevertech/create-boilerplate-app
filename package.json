@@ -7,7 +7,7 @@
     "test": "jest src/**/*.test.js",
     "start": "nodemon src/index.js",
     "precommit": "lint-staged",
-    "webpack": "webpack-cli --progress --profile --colors --display-error-details --mode development"
+    "webpack": "webpack-cli --progress --profile --colors --display-error-details --mode development && echo \"#!/usr/bin/env node\n$(cat ./build/app.bundle.js)\" > ./build/app.bundle.js"
   },
   "keywords": [],
   "author": "Alberto Gimeno <gimenete@gimenete.net>",
