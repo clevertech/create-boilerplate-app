@@ -74578,12 +74578,13 @@ function webpackContext(req) {
 	return __webpack_require__(id);
 }
 function webpackContextResolve(req) {
-	if(!__webpack_require__.o(map, req)) {
+	var id = map[req];
+	if(!(id + 1)) { // check for number or string
 		var e = new Error(\"Cannot find module '\" + req + \"'\");
 		e.code = 'MODULE_NOT_FOUND';
 		throw e;
 	}
-	return map[req];
+	return id;
 }
 webpackContext.keys = function webpackContextKeys() {
 	return Object.keys(map);
@@ -76805,8 +76806,8 @@ eval("__webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ \"./node_modules/@babel/runtime/helpers/asyncToGenerator.js\");
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _utils_clone__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../utils/clone */ \"./src/utils/clone/index.js\");
-/* harmony import */ var config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! config */ \"./config.json\");
-var config__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t(/*! config */ \"./config.json\", 1);
+/* harmony import */ var _config_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../config.json */ \"./config.json\");
+var _config_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../../../config.json */ \"./config.json\", 1);
 
 
 
@@ -76822,10 +76823,13 @@ function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            Object(_utils_clone__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(config__WEBPACK_IMPORTED_MODULE_3__.boilerplateRepo, './');
-            return _context.abrupt(\"return\", answers);
+            _context.next = 2;
+            return Object(_utils_clone__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(_config_json__WEBPACK_IMPORTED_MODULE_3__.boilerplateRepo, './');
 
           case 2:
+            return _context.abrupt(\"return\", answers);
+
+          case 3:
           case \"end\":
             return _context.stop();
         }
@@ -78213,8 +78217,8 @@ eval("__webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ \"./node_modules/@babel/runtime/helpers/asyncToGenerator.js\");
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _utils_yaml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../../utils/yaml */ \"./src/utils/yaml/index.js\");
-/* harmony import */ var config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! config */ \"./config.json\");
-var config__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t(/*! config */ \"./config.json\", 1);
+/* harmony import */ var _config_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../../../config.json */ \"./config.json\");
+var _config_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../../../../../../config.json */ \"./config.json\", 1);
 /* harmony import */ var ramda__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ramda */ \"./node_modules/ramda/es/index.js\");
 
 
@@ -78240,7 +78244,7 @@ function () {
           case 2:
             fileContents = _context.sent;
             redisHost = answers.admin.prompt.redisHost;
-            redisPort = config__WEBPACK_IMPORTED_MODULE_3__.redis.port;
+            redisPort = _config_json__WEBPACK_IMPORTED_MODULE_3__.redis.port;
             redisPrefix = answers.base.prompt.projectSlug;
             dbInfo = {
               secrets: [{
@@ -78887,13 +78891,13 @@ eval("__webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime/helpers/asyncToGenerator */ \"./node_modules/@babel/runtime/helpers/asyncToGenerator.js\");
 /* harmony import */ var _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _utils_clone__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../utils/clone */ \"./src/utils/clone/index.js\");
-/* harmony import */ var config__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! config */ \"./config.json\");
-var config__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t(/*! config */ \"./config.json\", 1);
+/* harmony import */ var _config_json__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../config.json */ \"./config.json\");
+var _config_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../../../config.json */ \"./config.json\", 1);
 
 
 
 
-var EXTRA_REPO = config__WEBPACK_IMPORTED_MODULE_3__.boilerplateExtrasRepo;
+var EXTRA_REPO = _config_json__WEBPACK_IMPORTED_MODULE_3__.boilerplateExtrasRepo;
 
 var run =
 /*#__PURE__*/
@@ -79970,10 +79974,10 @@ function () {
 eval("__webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"databases\", function() { return databases; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getDatabaseConfig\", function() { return getDatabaseConfig; });
-/* harmony import */ var config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! config */ \"./config.json\");
-var config__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! config */ \"./config.json\", 1);
+/* harmony import */ var _config_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../config.json */ \"./config.json\");
+var _config_json__WEBPACK_IMPORTED_MODULE_0___namespace = /*#__PURE__*/__webpack_require__.t(/*! ../../../config.json */ \"./config.json\", 1);
 
-var databases = config__WEBPACK_IMPORTED_MODULE_0__.databases;
+var databases = _config_json__WEBPACK_IMPORTED_MODULE_0__.databases;
 var getDatabaseConfig = function getDatabaseConfig(databaseName) {
   return databases[databaseName];
 };

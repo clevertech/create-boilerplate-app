@@ -1,8 +1,8 @@
 import clone from '../../../utils/clone'
-import config from 'config'
+import config from '../../../../config.json'
 
 const run = async function(answers) {
-  clone(config.boilerplateRepo, './')
+  await clone(config.boilerplateRepo, './')
   return answers
 }
 

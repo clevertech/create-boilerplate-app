@@ -1,5 +1,5 @@
 import clone from '../../../utils/clone'
-import config from 'config'
+import config from '../../../../config.json'
 
 export const EXTRA_REPO = config.boilerplateExtrasRepo
 const run = async function(answers) {

@@ -5,6 +5,11 @@ describe('Get Default Answers utility', () => {
   beforeEach(() => {
     process.argv[2] = projectName
   })
+  it('returns error when missing param', () => {
+    const values = subject()
+    process.argv[2] = undefined
+    expect(() => subject()).toThrowError('missing param')
+  })
   it('returns dirname from argv[2]', () => {
     const values = subject()
     expect(values.dirName).toBe(projectName)

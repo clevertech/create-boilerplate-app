@@ -1,5 +1,5 @@
 import yaml from '../../../../../../utils/yaml'
-import config from 'config'
+import config from '../../../../../../../config.json'
 import { mergeDeepRight } from 'ramda'
 
 const filePath = './helm/api.yml'
