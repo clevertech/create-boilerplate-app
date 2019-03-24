@@ -1,4 +1,5 @@
 var path = require('path')
+var webpack = require('webpack')
 
 module.exports = {
   resolve: {
@@ -44,5 +45,8 @@ module.exports = {
     child_process: 'empty',
     readline: 'empty'
   },
+  plugins: [
+    new webpack.BannerPlugin({ banner: '#!/usr/bin/env node', raw: true })
+  ],
   target: 'node'
 }
