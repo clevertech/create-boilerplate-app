@@ -12,7 +12,10 @@ jest.mock('../../../utils/clone')
 describe('Clone down base boilerplate code', () => {
   it('pulls down the public boilerplate repo', async () => {
     const answers = await subject(fakeAnswers)
-    expect(clone).toHaveBeenCalledWith('https://someboilerplate', mockDirName)
+    expect(clone).toHaveBeenCalledWith(
+      '--branch multi-stack https://someboilerplate',
+      mockDirName
+    )
     expect(answers).toEqual(expect.objectContaining(fakeAnswers))
   })
 })
