@@ -1,6 +1,6 @@
 import subject from './index'
 import yaml from '../../../../../../utils/yaml'
-import config from '../../../../../../../config.sjon'
+import config from '../../../../../../../config.json'
 
 const mockYaml = {}
 jest.mock('../../../../../../utils/yaml', () => jest.fn(() => mockYaml))
