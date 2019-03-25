@@ -1,11 +1,11 @@
 import { getDatabaseConfig } from '../databases'
-import fs from 'fs'
+import fs from 'fs-extra'
 
 import subject from './'
 
 const mockEnvFile =
   'DB_ENGINE=postgres\nDB_HOST=db\nDB_USER=postgres\nDB_PORT=5432\nDB_PASSWORD=o5MU9UhWaHNUXfrMqU~Ho\nDB_DATABASE=boilerplate\nDB_POOL_MIN=2\nDB_POOL_MAX=10@@\nSESSION_SECRET=O7LlCRtK9DjwoTmNRRbWnx@\nHEALTH_CHECK_SECRET=a73R3SDSUvLEffTp_N6eq\nTWILIO_ACCOUNT_SID=\nTWILIO_AUTH_TOKEN=\nTWILIO_NUMBER_FROM= # phone number or alphanumeric sender id\n'
-jest.mock('fs')
+jest.mock('fs-extra')
 jest.mock('.env.example', () => mockEnvFile, { virtual: true })
 
 describe('package.json utility', () => {

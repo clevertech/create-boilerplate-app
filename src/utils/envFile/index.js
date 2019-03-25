@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'fs-extra'
 
 const main = async function(envPath, changes) {
   if (!envPath) return
