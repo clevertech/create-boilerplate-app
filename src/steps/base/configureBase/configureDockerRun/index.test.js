@@ -2,7 +2,9 @@ import replaceStringInFile from '../../../../utils/replaceStringInFile'
 import subject from './'
 
 jest.mock('../../../../utils/replaceStringInFile')
+const mockBaseDir = 'mockbasedir'
 const fakeAnswers = {
+  baseDir: mockBaseDir,
   base: {
     prompt: {
       projectTitle: 'HappyCats',
@@ -23,7 +25,7 @@ describe('configure base docker/run', async () => {
     expect(answers).toEqual(expect.objectContaining(fakeAnswers))
     expect(replaceStringInFile).toHaveBeenCalledWith(
       'boilerplate',
-      'docker/run',
+      mockBaseDir + 'docker/run',
       expect.any(String)
     )
   })

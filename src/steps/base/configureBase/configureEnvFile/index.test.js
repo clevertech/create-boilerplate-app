@@ -3,7 +3,9 @@ import envFile from '../../../../utils/envFile'
 import subject from './'
 
 jest.mock('../../../../utils/envFile')
+const mockBaseDir = 'mockbasedir'
 const fakeAnswers = {
+  baseDir: mockBaseDir,
   base: {
     prompt: {
       projectTitle: 'HappyCats',
@@ -16,7 +18,7 @@ describe('Configuration of base env file', () => {
     const answers = await subject(fakeAnswers)
     expect(envFile).toHaveBeenNthCalledWith(
       1,
-      '.env.example',
+      mockBaseDir + '.env.example',
       expect.objectContaining({
         COMPOSE_PROJECT_NAME: expect.stringMatching(
           `${fakeAnswers.base.prompt.projectSlug}`

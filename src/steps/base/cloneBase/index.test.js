@@ -2,7 +2,7 @@ import clone from '../../../utils/clone'
 import subject from './'
 
 const mockDirName = 'mockdirname'
-const fakeAnswers = { dirName: mockDirName }
+const fakeAnswers = { baseDir: mockDirName }
 
 jest.mock('../../../../config.json', () => ({
   boilerplateRepo: 'https://someboilerplate'
