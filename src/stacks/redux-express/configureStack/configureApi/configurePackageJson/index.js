@@ -1,5 +1,5 @@
 import { pathOr } from 'ramda'
-import packageJson from '../../../../../utils/packageJson'
+import packageJson from '../../../../../utils/json'
 import { getDatabaseConfig } from '../../../../../utils/databases'
 
 const main = async function(answers) {

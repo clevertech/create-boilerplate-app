@@ -1,4 +1,4 @@
-import packageJson from '../../../../../utils/packageJson'
+import packageJson from '../../../../../utils/json'
 
 const main = async function(answers) {
   const path = answers.dirName + '/frontend/package.json'

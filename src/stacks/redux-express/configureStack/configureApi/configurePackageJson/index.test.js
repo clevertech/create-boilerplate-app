@@ -1,9 +1,9 @@
-import packageJson from '../../../../../utils/packageJson'
+import packageJson from '../../../../../utils/json'
 import { getDatabaseConfig } from '../../../../../utils/databases'
 
 import subject from './'
 
-jest.mock('../../../../../utils/packageJson', () => jest.fn(() => ({})))
+jest.mock('../../../../../utils/json', () => jest.fn(() => ({})))
 const fakeAnswers = {
   base: {
     prompt: {

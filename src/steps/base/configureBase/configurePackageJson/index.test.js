@@ -1,9 +1,7 @@
-import packageJson from '../../../../utils/packageJson'
-
+import json from '../../../../utils/json'
 import subject from './'
-import { getDatabaseConfig } from '../../../../utils/databases'
 
-jest.mock('../../../../utils/packageJson', () => jest.fn(() => ({})))
+jest.mock('../../../../utils/json', () => jest.fn(() => ({})))
 const fakeAnswers = {
   base: {
     prompt: {
@@ -20,11 +18,11 @@ const fakeAnswers = {
 describe('Update Root Package JSON', () => {
   it('sets name and description', async () => {
     const answers = await subject(fakeAnswers)
-    expect(packageJson).toHaveBeenNthCalledWith(
+    expect(json).toHaveBeenNthCalledWith(
       1,
       expect.stringMatching(/package.json/)
     )
-    expect(packageJson).toHaveBeenNthCalledWith(
+    expect(json).toHaveBeenNthCalledWith(
       2,
       expect.stringMatching(/package.json/),
       expect.objectContaining({

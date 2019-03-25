@@ -1,8 +1,8 @@
-import packageJson from '../../../../../utils/packageJson'
+import json from '../../../../../utils/json'
 
 import subject from './'
 
-jest.mock('../../../../../utils/packageJson', () => jest.fn(() => ({})))
+jest.mock('../../../../../utils/json', () => jest.fn(() => ({})))
 const fakeAnswers = {
   base: {
     prompt: {
@@ -19,11 +19,11 @@ const fakeAnswers = {
 describe('configure frontend package.json', () => {
   it('configures name', async () => {
     const answers = await subject(fakeAnswers)
-    expect(packageJson).toHaveBeenNthCalledWith(
+    expect(json).toHaveBeenNthCalledWith(
       1,
       expect.stringMatching(/frontend\/package\.json/)
     )
-    expect(packageJson).toHaveBeenNthCalledWith(
+    expect(json).toHaveBeenNthCalledWith(
       2,
       expect.stringMatching(/frontend\/package\.json/),
       expect.objectContaining({
@@ -34,11 +34,11 @@ describe('configure frontend package.json', () => {
   })
   it('configures description', async () => {
     const answers = await subject(fakeAnswers)
-    expect(packageJson).toHaveBeenNthCalledWith(
+    expect(json).toHaveBeenNthCalledWith(
       1,
       expect.stringMatching(/frontend\/package\.json/)
     )
-    expect(packageJson).toHaveBeenNthCalledWith(
+    expect(json).toHaveBeenNthCalledWith(
       2,
       expect.stringMatching(/frontend\/package\.json/),
       expect.objectContaining({
