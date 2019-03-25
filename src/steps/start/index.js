@@ -6,6 +6,7 @@ import suffixRun from '../suffix'
 import getDefaultAnswers from '../../utils/getDefaultAnswers'
 
 const run = async function() {
+  console.info('Start')
   let answers = getDefaultAnswers()
   answers = await baseRun(answers)
   answers = await stackRun(answers)

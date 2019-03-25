@@ -1,7 +1,8 @@
 import exec from '../../../utils/exec'
 
 const run = async function(answers) {
-  await exec('rm -rfi ' + answers.baseDir + 'base')
+  console.info('Base: Delete')
+  //await exec('rm -rf ' + answers.baseDir + 'base')
   return answers
 }
 

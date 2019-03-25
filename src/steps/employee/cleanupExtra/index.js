@@ -1,6 +1,6 @@
 import exec from '../../../utils/exec'
 const run = async function(answers) {
-  exec(`rm -rfi ${answers.baseDir}boilerplate-extras`)
+  exec(`rm -rf ${answers.baseDir}boilerplate-extras`)
   return answers
 }
 

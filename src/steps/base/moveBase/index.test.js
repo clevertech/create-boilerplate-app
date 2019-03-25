@@ -8,7 +8,7 @@ describe('Base Step', () => {
   it('moves base files into root', async () => {
     const answers = await subject(fakeAnswers)
     expect(exec).toHaveBeenCalledWith(
-      'mv `ls -A1 ' + mockBaseDir + 'base` ' + mockBaseDir
+      'mv `ls -dA1 ' + mockBaseDir + 'base/*` ' + mockBaseDir
     )
     expect(answers).toEqual(expect.objectContaining(fakeAnswers))
   })

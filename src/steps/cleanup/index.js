@@ -4,6 +4,7 @@ import installYarnDeps from './installYarnDeps'
 import initialCommit from './initialCommit'
 
 const run = async function(answers) {
+  console.info('Cleanup')
   answers = await deleteGitDir(answers)
   answers = await initGitDir(answers)
   answers = await installYarnDeps(answers)

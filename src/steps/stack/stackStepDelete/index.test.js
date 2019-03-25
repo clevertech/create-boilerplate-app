@@ -14,7 +14,7 @@ describe('Stack Step: Delete', () => {
   it('deletes the left-over stack folder', async () => {
     const answers = await subject(fakeAnswers)
     expect(exec).toHaveBeenCalledWith(
-      expect.stringMatching(/rm -rfi basedir\/stacks/)
+      expect.stringMatching(/rm -rf basedir\/stacks/)
     )
     expect(answers).toEqual(expect.objectContaining(fakeAnswers))
   })

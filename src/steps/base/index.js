@@ -5,6 +5,7 @@ import deleteBase from './deleteBase'
 import configureBase from './configureBase'
 
 const base = async function(answers) {
+  console.info('Base')
   answers = await promptBase(answers)
   answers = await cloneBase(answers)
   answers = await moveBase(answers)

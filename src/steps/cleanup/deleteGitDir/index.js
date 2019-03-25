@@ -1,7 +1,8 @@
 import exec from '../../../utils/exec'
 
 const main = async function(answers) {
-  await exec('rm -rfi ' + answers.baseDir + '.git')
+  console.info('Cleanup: delete git')
+  await exec('rm -rf ' + answers.baseDir + '.git')
   return answers
 }
 

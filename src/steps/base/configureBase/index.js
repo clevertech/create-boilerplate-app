@@ -4,6 +4,7 @@ import configureDockerRun from './configureDockerRun'
 import configureEnvFile from './configureEnvFile'
 
 const main = async function(answers) {
+  console.info('Base configure')
   answers = Object.assign({}, { base: {} }, answers)
   answers = await configurePackageJson(answers)
   answers = await configurePrettierConfig(answers)

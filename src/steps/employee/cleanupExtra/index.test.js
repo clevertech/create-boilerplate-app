@@ -15,7 +15,7 @@ const fakeAnswers = {
 describe('Cleanup for Extra Employee Step', () => {
   it('removes leftover files from employee configuration', async () => {
     const answers = await subject(fakeAnswers)
-    expect(exec).toHaveBeenCalledWith('rm -rfi mockbasedir/boilerplate-extras')
+    expect(exec).toHaveBeenCalledWith('rm -rf mockbasedir/boilerplate-extras')
     expect(answers).toEqual(expect.objectContaining(fakeAnswers))
   })
 })
