@@ -6,7 +6,7 @@ describe('Get Default Answers utility', () => {
     process.argv[2] = projectName
   })
   it('returns error when missing param', () => {
-    const values = subject()
+    subject()
     process.argv[2] = undefined
     expect(() => subject()).toThrowError('missing param')
   })
@@ -16,6 +16,6 @@ describe('Get Default Answers utility', () => {
   })
   it('returns basedir from processing argv[2]', () => {
     const values = subject()
-    expect(values.baseDir).toMatch(RegExp(projectName + '$'))
+    expect(values.baseDir).toMatch(new RegExp(projectName + '/$'))
   })
 })

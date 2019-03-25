@@ -3,8 +3,8 @@ import { promisify } from 'util'
 
 const asyncReaddir = promisify(fs.readdir)
 
-const getStacks = function() {
-  return asyncReaddir('src/stacks')
+const getStacks = function(baseDir) {
+  return asyncReaddir(baseDir + 'stacks')
 }
 
 export default getStacks

@@ -1,6 +1,6 @@
-import deleteUtil from '../../../utils/delete'
+import exec from '../../../utils/exec'
 const run = async function(answers) {
-  deleteUtil('boilerplate-extras')
+  exec(`rm -rfi ${answers.baseDir}boilerplate-extras`)
   return answers
 }
 

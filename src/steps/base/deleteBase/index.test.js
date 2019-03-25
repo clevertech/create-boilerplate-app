@@ -1,14 +1,15 @@
-import deleteFolder from '../../../utils/delete'
+import exec from '../../../utils/exec'
 
 import subject from './'
 
-jest.mock('../../../utils/delete', () => jest.fn(answers => answers))
+jest.mock('../../../utils/exec', () => jest.fn(answers => answers))
 
-const fakeAnswers = { a: 123 }
+const mockBaseDir = 'mockbasedir/'
+const fakeAnswers = { baseDir: mockBaseDir }
 describe('Base step: Delete', () => {
   it('deletes the left-over base folder', async () => {
     const answers = await subject(fakeAnswers)
-    expect(deleteFolder).toHaveBeenCalledWith('base')
+    expect(exec).toHaveBeenCalledWith('rm -rfi mockbasedir/base')
     expect(answers).toEqual(expect.objectContaining(fakeAnswers))
   })
 })

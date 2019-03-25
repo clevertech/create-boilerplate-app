@@ -1,8 +1,11 @@
 import exec from '../../../utils/exec'
-import { pathOr } from 'ramda'
 
 const run = async function(answers) {
-  await exec(`mv stack/${pathOr(null, ['stack', 'slug'], answers)}/{.,}* ./`)
+  await exec(
+    `mv \`ls -A1 ${answers.baseDir}stack/${answers.stack.slug}\` ${
+      answers.baseDir
+    }`
+  )
   return answers
 }
 

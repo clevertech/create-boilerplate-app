@@ -1,7 +1,7 @@
-import deleteFolder from '../../../utils/delete'
+import exec from '../../../utils/exec'
 
 const run = async function(answers) {
-  await deleteFolder('base')
+  await exec('rm -rfi ' + answers.baseDir + 'base')
   return answers
 }
 

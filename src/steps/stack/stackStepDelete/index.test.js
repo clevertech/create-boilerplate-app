@@ -1,14 +1,21 @@
-import deleteFolder from '../../../utils/delete'
+import exec from '../../../utils/exec'
 
 import subject from './'
 
-jest.mock('../../../utils/delete', () => jest.fn(answers => answers))
+jest.mock('../../../utils/exec', () => jest.fn(answers => answers))
 
-const fakeAnswers = { a: 123 }
+const fakeAnswers = {
+  baseDir: 'basedir/',
+  stack: {
+    slug: 'redux-express'
+  }
+}
 describe('Stack Step: Delete', () => {
   it('deletes the left-over stack folder', async () => {
     const answers = await subject(fakeAnswers)
-    expect(deleteFolder).toHaveBeenCalledWith('stacks')
+    expect(exec).toHaveBeenCalledWith(
+      expect.stringMatching(/rm -rfi basedir\/stacks/)
+    )
     expect(answers).toEqual(expect.objectContaining(fakeAnswers))
   })
 })

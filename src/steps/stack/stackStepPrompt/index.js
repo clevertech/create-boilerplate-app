@@ -6,7 +6,7 @@ const main = async function(answers) {
     {
       name: 'stack',
       type: 'list',
-      choices: await getStacks(),
+      choices: await getStacks(answers.baseDir),
       message: 'Select your stack'
     }
   ])

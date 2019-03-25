@@ -1,12 +1,14 @@
-import deleteOldGitDir from '../../../utils/delete'
-
 import subject from './'
+import exec from '../../../utils/exec'
 
-jest.mock('../../../utils/delete')
+const mockBaseDir = 'mockbasedir/'
+const fakeAnswers = { baseDir: mockBaseDir }
 
-describe('Delete git dir cleanupExtra subtask', () => {
-  it('removes the leftover base boilerplate code', async () => {
-    await subject()
-    expect(deleteOldGitDir).toHaveBeenCalledWith('.git')
+jest.mock('../../../utils/exec')
+describe('Delete base .git dir', () => {
+  it('removes the base boilerplate .git dir', async () => {
+    const answers = await subject(fakeAnswers)
+    expect(exec).toHaveBeenCalledWith('rm -rfi mockbasedir/.git')
+    expect(answers).toEqual(expect.objectContaining(fakeAnswers))
   })
 })

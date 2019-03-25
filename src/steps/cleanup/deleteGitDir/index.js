@@ -1,7 +1,7 @@
-import deleteRootDir from '../../../utils/delete'
+import exec from '../../../utils/exec'
 
 const main = async function(answers) {
-  await deleteRootDir('.git')
+  await exec('rm -rfi ' + answers.baseDir + '.git')
   return answers
 }
 

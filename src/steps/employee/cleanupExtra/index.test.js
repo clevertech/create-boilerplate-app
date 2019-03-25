@@ -1,9 +1,11 @@
-import deleteUtil from '../../../utils/delete'
+import exec from '../../../utils/exec'
 
 import subject from './'
 
-jest.mock('../../../utils/delete')
+jest.mock('../../../utils/exec')
+const mockBaseDir = 'mockbasedir/'
 const fakeAnswers = {
+  baseDir: mockBaseDir,
   base: {
     prompt: {
       employee: true
@@ -13,7 +15,7 @@ const fakeAnswers = {
 describe('Cleanup for Extra Employee Step', () => {
   it('removes leftover files from employee configuration', async () => {
     const answers = await subject(fakeAnswers)
-    expect(deleteUtil).toHaveBeenCalledWith('boilerplate-extras')
+    expect(exec).toHaveBeenCalledWith('rm -rfi mockbasedir/boilerplate-extras')
     expect(answers).toEqual(expect.objectContaining(fakeAnswers))
   })
 })

@@ -2,7 +2,9 @@ import envFile from '../../../../../utils/envFile'
 import subject from './'
 jest.mock('../../../../../utils/envFile', () => jest.fn(answers => answers))
 
+const mockBaseDir = 'mockbasedir/'
 const fakeAnswers = {
+  baseDir: mockBaseDir,
   base: {
     prompt: {
       projectTitle: 'HappyCats'
