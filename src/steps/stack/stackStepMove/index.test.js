@@ -14,7 +14,7 @@ describe('Stack Step: Move', () => {
     const answers = await subject(fakeAnswers)
     expect(exec).toHaveBeenCalledWith(
       expect.stringMatching(
-        /mv basedir\/stack\/redux-express\/\{\,\.\[\^\.\]\}\* basedir\//
+        /cp \-r basedir\/stacks\/redux-express\/\{\,\.\[\^\.\]\}\* basedir\/ \&\& rm \-R basedir\/stacks\/redux-express\/\{\,\.\[\^\.\]\}\*/
       )
     )
     expect(answers).toEqual(expect.objectContaining(fakeAnswers))

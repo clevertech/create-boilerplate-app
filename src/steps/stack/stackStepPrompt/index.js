@@ -2,6 +2,7 @@ import inquirer from 'inquirer'
 import getStacks from '../../../utils/getStacks'
 
 const main = async function(answers) {
+  console.log('Stack: prompt')
   const newanswers = await inquirer.prompt([
     {
       name: 'stack',
