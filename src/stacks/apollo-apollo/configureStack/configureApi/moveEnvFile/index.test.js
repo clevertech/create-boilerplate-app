@@ -10,7 +10,7 @@ describe('Redux-Express Stack: Configure API -- move env file script', () => {
     const answers = await subject(fakeAnswers)
     expect(answers).toEqual(expect.objectContaining(fakeAnswers))
     expect(exec).toHaveBeenCalledWith(
-      'mv mockbasedir/src/api/.env.example mockbasedir/src/api/.env'
+      'mv mockbasedir/api/.env.example mockbasedir/api/.env'
     )
   })
 })

@@ -11,7 +11,6 @@ const run = async function(answers) {
   } catch (e) {
     console.log('Stack: move - no hidden files to copy')
   }
-  await exec(`rm -R ${basePath}`)
   return answers
 }
 

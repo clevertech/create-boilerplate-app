@@ -29,12 +29,4 @@ describe('Stack Step: Move', () => {
     )
     expect(answers).toEqual(expect.objectContaining(fakeAnswers))
   })
-  it('removes remaining files', async () => {
-    const answers = await subject(fakeAnswers)
-    expect(exec).toHaveReturnedTimes(3)
-    expect(exec).toHaveBeenNthCalledWith(
-      3,
-      expect.stringMatching(/rm \-R basedir\/stacks\/redux-express\//)
-    )
-  })
 })
