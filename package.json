@@ -8,6 +8,7 @@
     "build": "webpack-cli --progress --profile --colors --display-error-details --mode development --config webpack.config.js",
     "prestart": "npm run build",
     "start": "nodemon build/app.bundle.js",
+    "dev": "node build/app.bundle.js",
     "poststart": "webpack --watch --config webpack.config.js",
     "precommit": "lint-staged"
   },
