@@ -3,7 +3,7 @@ import packageJson from '../../../../../utils/json'
 import { getDatabaseConfig } from '../../../../../utils/databases'
 
 const main = async function(answers) {
-  const path = answers.baseDir + '/api/package.json'
+  const path = answers.baseDir + 'src/api/package.json'
   const pjson = await packageJson(path)
   pjson.name = answers.base.prompt.projectTitle + ' API'
   pjson.description = answers.base.prompt.projectTitle + ' API'

@@ -1,7 +1,11 @@
 import exec from '../../../../../utils/exec'
 
 const run = async function(answers) {
-  await exec(`mv src/frontend/.env.example src/frontend/.env`)
+  await exec(
+    `mv ${answers.baseDir}src/frontend/.env.example ${
+      answers.baseDir
+    }src/frontend/.env`
+  )
   return answers
 }
 

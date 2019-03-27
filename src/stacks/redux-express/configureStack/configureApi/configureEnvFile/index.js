@@ -2,7 +2,7 @@ import envFile from '../../../../../utils/envFile'
 import path from 'path'
 
 const main = async function(answers) {
-  const envPath = path.join(answers.baseDir, 'api/.env.example')
+  const envPath = path.join(answers.baseDir, 'src/api/.env.example')
   const changes = {
     DB_ENGINE: answers.stack.prompt.dbEngine,
     DB_HOST: 'db',
