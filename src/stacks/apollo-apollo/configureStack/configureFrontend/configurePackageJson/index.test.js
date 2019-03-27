@@ -27,7 +27,7 @@ describe('configure frontend package.json', () => {
       2,
       expect.stringMatching(/frontend\/package\.json/),
       expect.objectContaining({
-        name: fakeAnswers.base.prompt.projectTitle + ' Frontend'
+        name: fakeAnswers.base.prompt.projectTitle + '-frontend'
       })
     )
     expect(answers).toEqual(expect.objectContaining(fakeAnswers))
