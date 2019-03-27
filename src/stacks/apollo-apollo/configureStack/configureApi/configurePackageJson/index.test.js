@@ -29,7 +29,7 @@ describe('configure API package.json', async () => {
       2,
       expect.stringMatching(/api\/package\.json/),
       expect.objectContaining({
-        name: fakeAnswers.base.prompt.projectTitle + ' API',
+        name: fakeAnswers.base.prompt.projectTitle + '-API',
         description: fakeAnswers.base.prompt.projectTitle + ' API'
       })
     )
