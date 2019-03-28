@@ -8,7 +8,7 @@ const prompt = async function(answers) {
       type: 'string',
       message:
         "What's the official name of the project? (e.g. The New York Times)",
-      default: answers.dirName
+      default: path.basename(answers.dirName)
     },
     {
       name: 'projectSlug',
@@ -21,7 +21,7 @@ const prompt = async function(answers) {
       name: 'projectDescription',
       type: 'string',
       message: "What's the project's description?",
-      default: answers.dirName
+      default: path.basename(answers.dirName)
     },
     {
       name: 'enableRemoteRepo',
