@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "test": "jest src/**/*.test.js",
+    "test": "jest src/*",
     "build": "webpack-cli --progress --profile --colors --display-error-details --mode development --config webpack.config.js",
     "prestart": "npm run build",
     "start": "nodemon build/app.bundle.js",
